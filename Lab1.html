@@ -3,162 +3,172 @@
     <head>
         <title>Sitio de Laboratorios - A01703331</title>
         <meta charset="UTF-8">
+        <link rel="stylesheet" href="./node_modules/nes.css/css/nes.min.css">
         <link rel="stylesheet" href="Lab3.min.css">
     </head>
     <body>
-        <h1>Hecho con <a href="https://code.visualstudio.com/">Visual Studio Code</a></h1>
-        <p id="nombre">José Sebastián Pedrero Jiménez - A01703331</p>
-        <section id="contacto">
-            <p><b>Contacto:</b></p>
-            <ul>
-                <li><b>Correos:</b> a01703331@tec.mx, sebastian.p.jimenez@gmail.com, adriftinvr.mkl@gmail.com</li>
-                <li><b>Celular:</b> (+52) 442 613 9123</li>
+        <h1>Hecho con <a class="link" href="https://code.visualstudio.com/">Visual Studio Code</a></h1>
+        <p class="section-head">José Sebastián Pedrero Jiménez - A01703331</p><i class="nes-mario"></i>
+        <p class="section-head"><b>Contacto:</b></p>
+        <ul class="nes-list is-disc">
+            <li><b>Correos:</b> a01703331@tec.mx, sebastian.p.jimenez@gmail.com, adriftinvr.mkl@gmail.com</li>
+            <li><b>Celular:</b> (+52) 442 613 9123</li>
+        </ul>
+        <p class="section-head"><b>Preguntas:</b></p>
+        <ul><button class="nes-btn is-primary" onclick="TextToggle('Lab1')">Laboratorio 1</button></ul>
+        <section id="Lab1" style="display:none">
+            <ul class="nes-list is-disc">
+                <li class="pregunta">¿Cuál es la diferencia entre Internet y la World Wide Web?</li>
+                <ul class="nes-list is-circle">
+                    <li>El internet es la red que de cierta forma potencia todos los servicios en linea como llamadas, partidas en linea, streaming, etc. Mientras que la Web son los protocolos usa el Internet para vincular sitios.</li>
+                </ul>
+                <li class="pregunta">¿Cuáles son las partes de un URL?</li>
+                <ul class="nes-list is-circle">
+                    <li><b>Protocolo:</b> Formato que intercambia datos entre los dispositivos involucrados (http, ftp, etc.)</li>
+                    <li><b>Servidor:</b> La maquina de destino (Google, YouTube, Nintendo, etc.), el dominio (.com, .gov, .mx), y el subdominio (www)</li>
+                    <li><b>Puerto:</b> Número que corresponde a la entrada de la máquina.</li>
+                    <li><b>Directorio:</b> Igual que un directorio de un sistema operativo, organiza las paginas del servidor (servidor/inicio/preguntas/)</li>
+                    <li><b>Página:</b> La pagina actual</li>
+                </ul>
+                <li class="pregunta">¿Cuál es el propósito de los métodos HTTP: GET, HEAD, POST, PUT, PATCH, DELETE?</li>
+                <ul class="nes-list is-circle">
+                    <li><b>GET:</b> Solicita un recurso, solo recupera datos.</li>
+                    <li><b>HEAD:</b> Igual a GET, solo que este no obtiene el cuerpo de la respuesta.</li>
+                    <li><b>POST:</b> Envia una entidad a un recurso, usualmente haciendo cambios al servidor.</li>
+                    <li><b>PUT:</b> Reemplaza las representaciones actuales del recurso de destino con la carga útil.</li>
+                    <li><b>PATCH:</b> Aplica modificaciones a un recurso.</li>
+                    <li><b>DELETE:</b> Borra un recurso.</li>
+                </ul>
+                <li class="pregunta">¿Qué método HTTP se debe utilizar al enviar un formulario HTML, por ejemplo cuando ingresas tu usuario y contraseña en algún sitio? ¿Por qué?</li>
+                <ul class="nes-list is-circle">
+                    <li>Se usa POST debido a que envia nuestra respuesta, la cual es verificada en el servidor, lo que permitira el acceso a este mismo, esto ultimo siendo el cambio al servidor.</li>
+                </ul>
+                <li class="pregunta">¿Qué método HTTP se utiliza cuando a través de un navegador web se accede a una página a través de un URL?</li>
+                <ul class="nes-list is-circle">
+                    <li>Se usa GET debido a que obtiene la pagina.</li>
+                </ul>
+                <li class="pregunta">Un servidor web devuelve una respuesta HTTP con código 200. ¿Qué significa esto? ¿Ocurrió algún error?</li>
+                <ul class="nes-list is-circle">
+                    <li>El codigo 200 representa un OK, es decir, que una solicitud se realizó con éxito, sin errores.</li>
+                </ul>
+                <li class="pregunta">¿Es responsabilidad del desarrollador corregir un sitio web si un usuario reporta que intentó acceder al sitio y se encontró con un error 404? ¿Por qué?</li>
+                <ul class="nes-list is-circle">
+                    <li>Si, debido a que el codigo de error 404 ocurre cuando no se puede encontrar el contenido que se solicita.</li>
+                </ul>
+                <li class="pregunta">¿Es responsabilidad del desarrollador corregir un sitio web si un usuario reporta que intentó acceder al sitio y se encontró con un error 500? ¿Por qué?</li>
+                <ul class="nes-list is-circle">
+                    <li>Debido a que según el sitio de desarroladores de Mozilla, el código 500 indica que no encontró un mejor código de los 5XX y los administradores solicitan más detalles para conocer el origen del error, pero en general sí.</li>
+                </ul>
+                <li class="pregunta">¿Qué significa que un atributo HTML5 esté depreciado o desaprobado (deprecated)? Menciona algunos elementos de HTML 4 que en HTML5 estén desaprobados.</li>
+                <ul class="nes-list is-circle">
+                    <li>Significa que ya no es recomendado su uso en HTML5 debido a una actualización del estandar. Algunos elementos desaprobados de HTML4 son basefont, font, center, big en favor de las hojas de estilo css.</li>
+                </ul>
+                <li class="pregunta">¿Cuáles son las diferencias principales entre HTML 4 y HTML5?</li>
+                <ul class="nes-list is-circle">
+                    <li>HTML5 puede definir un juego de caracteres, permite usar elementos SVG y MathML, introduce header, footer, section, etc., y desaprueba basefont, big, center, etc.</li>
+                </ul>
+                <li class="pregunta">¿Qué componentes de estructura y estilo tiene una tabla?</li>
+                <ul class="nes-list is-circle">
+                    <li>Una tabla de html tiene elementos de row, celda, y un encabezado común, también se puede cambiar el estilo de las celdas, es decir, sus bordes, color de relleno, etc.</li>
+                </ul>
+                <li class="pregunta">¿Cuáles son los principales controles de una forma HTML5?</li>
+                <ul class="nes-list is-circle">
+                    <li>Existen los botones, las listas de selección multiple, el input de texto, sliders, etc.</li>
+                </ul>
+                <li class="pregunta">¿Qué tanto soporte HTML5 tiene el navegador que utilizas?</li>
+                <ul class="nes-list is-circle">
+                    <li>El navegador que uso (Google Chrome Windows 10) tiene 476 de 555 puntos en cuanto a soporte de HTML5.</li>
+                </ul>
+                <li class="pregunta">¿Cuál es el ciclo de vida de los sistemas de información?</li>
+                <ul class="nes-list is-circle">
+                    <li><b>Fase de Planeación: </b>Desde montar el sistema hasta definir el cronograma y la asignación de tareas.</li>
+                    <li><b>Fase de Análisis: </b>Se analizan los requisitos de lo que debe hacer el sistema, en esta fase se identifica lo esencial para evitar usar recursos en aquello que no sea de esencia.</li>
+                    <li><b>Fase de Diseño: </b>Se verifica cómo el sistema cumplirá con las necesidades que se tengan.</li>
+                    <li><b>Fase de Implementación: </b>Se empieza a armar el sistema, por lo que se recomienda tener al equipo con un mismo enfoque.</li>
+                    <li><b>Fase de Pruebas: </b>Se realizan… pruebas para asegurar que el sistema cumpla con los requisitos establecidos, de preferencia a satisfacción del cliente.</li>
+                    <li><b>Fase de Despliegue: </b>Se implementan el hardware y software necesarios para poner en marcha el nuevo sistema con el fin de asegurar que no haya problemas y documentarlo para sus futuros usuarios.</li>
+                    <li><b>Fase de Mantenimiento: </b>A medida que pasa el tiempo se le va dando soporte al sistema para mejorar su rendimiento y arreglar fallas que vayan apareciendo.</li>
+                    <li><b>Fase de Cierre: </b>Dependiendo de las circunstancias se migren los datos a un nuevo sistema de información para su uso en un nuevo sistema y dejar de darle soporte, o simplemente iniciar el proceso de cierre.</li>
+                </ul>
+                <li class="pregunta">¿Cuál es el ciclo de desarrollo de sistemas de información?</li>
+                <ul class="nes-list is-circle">
+                    <li><b>Fase de Planeación: </b>Se identifica la necesidad de un nuevo software para lograr los objetivos de la empresa, averiguando el alcance del problema y buscar sus soluciones.</li>
+                    <li><b>Fase de Requerimientos: </b>Se trabaja en la fuente del problema o necesidad, se consideran los requisitos funcionales del proyecto, se hacen análisis del sistema y de las necesidades de los usuarios finales.</li>
+                    <li><b>Fase de Diseño: </b>Se describen a detalle las especificaciones, caracterisiticas, y operaciones que satisfagan los requisitos funcionales.</li>
+                    <li><b>Fase de Desarrollo: </b>Se empieza a construir el sistema, esto hace referenica al código y los diagramas de flujo, para asegurar que el proceso sea organizdo correctamente.</li>
+                    <li><b>Fase de Integración: </b>Se realizan… pruebas de QA para asegurar que el sistema cumpla con los requisitos establecidos, y que el software en si sea de calidad. Se repite hasta que el cliente lo considere aceptable.</li>
+                    <li><b>Fase de Implementación: </b>Contrario a lo que el nombre de a pensar, aquí es donde se hace la mayor parte del código, también se hace la instalación real del sistema desarrollado, si es un sistema que reemplazara uno viejo, también se hace la migración en esta fase.</li>
+                    <li><b>Fase de Mantenimiento: </b>Se realiza mantenimiento y se realizan actualizaciones periodicamente. Los usuarios finales ajustan el sistema para mejorar su rendimiento, y pueden agregar nuevos requisitos que vayan apareciendo.</li>
+                </ul>
             </ul>
         </section>
-        <section id="Lab1">
-            <p><b>Preguntas Lab 1:</b></p>
-            <ul>
-                <li>
-                    <span class="pregunta">¿Cuál es la diferencia entre Internet y la World Wide Web?</span>
-                    <ul>
-                        <li>El internet es la red que de cierta forma potencia todos los servicios en linea como llamadas, partidas en linea, streaming, etc. Mientras que la Web son los protocolos usa el Internet para vincular sitios.</li>
-                    </ul>
-                </li>
-                <li>
-                    <span class="pregunta">¿Cuáles son las partes de un URL?</span>
-                    <ul>
-                        <li><b>Protocolo:</b> Formato que intercambia datos entre los dispositivos involucrados (http, ftp, etc.)</li>
-                        <li><b>Servidor:</b> La maquina de destino (Google, YouTube, Nintendo, etc.), el dominio (.com, .gov, .mx), y el subdominio (www)</li>
-                        <li><b>Puerto:</b> Número que corresponde a la entrada de la máquina.</li>
-                        <li><b>Directorio:</b> Igual que un directorio de un sistema operativo, organiza las paginas del servidor (servidor/inicio/preguntas/)</li>
-                        <li><b>Página:</b> La pagina actual</li>
-                    </ul>
-                </li>
-                <li>
-                    <span class="pregunta">¿Cuál es el propósito de los métodos HTTP: GET, HEAD, POST, PUT, PATCH, DELETE?</span>
-                    <ul>
-                        <li><b>GET:</b> Solicita un recurso, solo recupera datos.</li>
-                        <li><b>HEAD:</b> Igual a GET, solo que este no obtiene el cuerpo de la respuesta.</li>
-                        <li><b>POST:</b> Envia una entidad a un recurso, usualmente haciendo cambios al servidor.</li>
-                        <li><b>PUT:</b> Reemplaza las representaciones actuales del recurso de destino con la carga útil.</li>
-                        <li><b>PATCH:</b> Aplica modificaciones a un recurso.</li>
-                        <li><b>DELETE:</b> Borra un recurso.</li>
-                    </ul>
-                </li>
-                <li>
-                    <span class="pregunta">¿Qué método HTTP se debe utilizar al enviar un formulario HTML, por ejemplo cuando ingresas tu usuario y contraseña en algún sitio? ¿Por qué?</span>
-                    <ul>
-                        Se usa POST debido a que envia nuestra respuesta, la cual es verificada en el servidor, lo que permitira el acceso a este mismo, esto ultimo siendo el cambio al servidor.
-                    </ul>
-                </li>
-                <li>
-                    <span class="pregunta">¿Qué método HTTP se utiliza cuando a través de un navegador web se accede a una página a través de un URL?</span>
-                    <ul>
-                        Se usa GET debido a que obtiene la pagina.
-                    </ul>
-                </li>
-                <li>
-                    <span class="pregunta">Un servidor web devuelve una respuesta HTTP con código 200. ¿Qué significa esto? ¿Ocurrió algún error?</span>
-                    <ul>
-                        El codigo 200 representa un OK, es decir, que una solicitud se realizó con éxito, sin errores.
-                    </ul>
-                </li>
-                <li>
-                    <span class="pregunta">¿Es responsabilidad del desarrollador corregir un sitio web si un usuario reporta que intentó acceder al sitio y se encontró con un error 404? ¿Por qué?</span>
-                    <ul>
-                        Si, debido a que el codigo de error 404 ocurre cuando no se puede encontrar el contenido que se solicita.
-                    </ul>
-                </li>
-                <li>
-                    <span class="pregunta">¿Es responsabilidad del desarrollador corregir un sitio web si un usuario reporta que intentó acceder al sitio y se encontró con un error 500? ¿Por qué?</span>
-                    <ul>
-                        Debido a que según el sitio de desarroladores de Mozilla, el código 500 indica que no encontró un mejor código de los 5XX y los administradores solicitan más detalles para conocer el origen del error, pero en general sí.
-                    </ul>
-                </li>
-                <li>
-                    <span class="pregunta">¿Qué significa que un atributo HTML5 esté depreciado o desaprobado (deprecated)? Menciona algunos elementos de HTML 4 que en HTML5 estén desaprobados.</span>
-                    <ul>
-                        Significa que ya no es recomendado su uso en HTML5 debido a una actualización del estandar. Algunos elementos desaprobados de HTML4 son basefont, font, center, big en favor de las hojas de estilo css.
-                    </ul>
-                </li>
-                <li>
-                    <span class="pregunta">¿Cuáles son las diferencias principales entre HTML 4 y HTML5?</span>
-                    <ul>
-                        HTML5 puede definir un juego de caracteres, permite usar elementos SVG y MathML, introduce header, footer, section, etc., y desaprueba basefont, big, center, etc.
-                    </ul>
-                </li>
-                <li>
-                    <span class="pregunta">¿Qué componentes de estructura y estilo tiene una tabla?</span>
-                    <ul>
-                        Una tabla de html tiene elementos de row, celda, y un encabezado común, también se puede cambiar el estilo de las celdas, es decir, sus bordes, color de relleno, etc.
-                    </ul>
-                </li>
-                <li>
-                    <span class="pregunta">¿Cuáles son los principales controles de una forma HTML5?</span>
-                    <ul>
-                        Existen los botones, las listas de selección multiple, el input de texto, sliders, etc.
-                    </ul>
-                </li>
-                <li>
-                    <span class="pregunta">¿Qué tanto soporte HTML5 tiene el navegador que utilizas?</span>
-                    <ul>
-                        El navegador que uso (Google Chrome Windows 10) tiene 476 de 555 puntos en cuanto a soporte de HTML5.
-                    </ul>
-                </li>
-                <li>
-                    <span class="pregunta">¿Cuál es el ciclo de vida de los sistemas de información?</span>
-                    <ul>
-                        <li><b>Fase de Planeación: </b>Desde montar el sistema hasta definir el cronograma y la asignación de tareas.</li>
-                        <li><b>Fase de Análisis: </b>Se analizan los requisitos de lo que debe hacer el sistema, en esta fase se identifica lo esencial para evitar usar recursos en aquello que no sea de esencia.</li>
-                        <li><b>Fase de Diseño: </b>Se verifica cómo el sistema cumplirá con las necesidades que se tengan.</li>
-                        <li><b>Fase de Implementación: </b>Se empieza a armar el sistema, por lo que se recomienda tener al equipo con un mismo enfoque.</li>
-                        <li><b>Fase de Pruebas: </b>Se realizan… pruebas para asegurar que el sistema cumpla con los requisitos establecidos, de preferencia a satisfacción del cliente.</li>
-                        <li><b>Fase de Despliegue: </b>Se implementan el hardware y software necesarios para poner en marcha el nuevo sistema con el fin de asegurar que no haya problemas y documentarlo para sus futuros usuarios.</li>
-                        <li><b>Fase de Mantenimiento: </b>A medida que pasa el tiempo se le va dando soporte al sistema para mejorar su rendimiento y arreglar fallas que vayan apareciendo.</li>
-                        <li><b>Fase de Cierre: </b>Dependiendo de las circunstancias se migren los datos a un nuevo sistema de información para su uso en un nuevo sistema y dejar de darle soporte, o simplemente iniciar el proceso de cierre.</li>
-                    </ul>
-                </li>
-                <li>
-                    <span class="pregunta">¿Cuál es el ciclo de desarrollo de sistemas de información?</span>
-                    <ul>
-                        <li><b>Fase de Planeación: </b>Se identifica la necesidad de un nuevo software para lograr los objetivos de la empresa, averiguando el alcance del problema y buscar sus soluciones.</li>
-                        <li><b>Fase de Requerimientos: </b>Se trabaja en la fuente del problema o necesidad, se consideran los requisitos funcionales del proyecto, se hacen análisis del sistema y de las necesidades de los usuarios finales.</li>
-                        <li><b>Fase de Diseño: </b>Se describen a detalle las especificaciones, caracterisiticas, y operaciones que satisfagan los requisitos funcionales.</li>
-                        <li><b>Fase de Desarrollo: </b>Se empieza a construir el sistema, esto hace referenica al código y los diagramas de flujo, para asegurar que el proceso sea organizdo correctamente.</li>
-                        <li><b>Fase de Integración: </b>Se realizan… pruebas de QA para asegurar que el sistema cumpla con los requisitos establecidos, y que el software en si sea de calidad. Se repite hasta que el cliente lo considere aceptable.</li>
-                        <li><b>Fase de Implementación: </b>Contrario a lo que el nombre de a pensar, aquí es donde se hace la mayor parte del código, también se hace la instalación real del sistema desarrollado, si es un sistema que reemplazara uno viejo, también se hace la migración en esta fase.</li>
-                        <li><b>Fase de Mantenimiento: </b>Se realiza mantenimiento y se realizan actualizaciones periodicamente. Los usuarios finales ajustan el sistema para mejorar su rendimiento, y pueden agregar nuevos requisitos que vayan apareciendo.</li>
-                    </ul>
-                </li>
+        <ul><button class="nes-btn is-primary" onclick="TextToggle('Lab3')">Laboratorio 3</button></ul>
+        <section id="Lab3" style="display:none">
+            <ul class="nes-list is-disc">
+                <li class="pregunta">Como ingeniero de software ¿cuál es tu recomendación sobre el uso de !important en un CSS?</li>
+                <ul class="nes-list is-circle">
+                    <li>Mi recomendación es que se use con cuidado y cuando se quiere dar prioridad a algo, normalmente la prioridad que se da en cuanto al estilo denominado por un CSS va en orden de ID, Clase, Elemento, y el selector universal (*) al final, sin embargo, usar !important hace que el atributo marcado como importante se tome como la más alta prioridad sin importar donde se definió.</li>
+                </ul>
+                <li class="pregunta">Si se pone una imagen de fondo en una página HTML, ¿por qué debe escogerse con cuidado?</li>
+                <ul class="nes-list is-circle">
+                    <li>Se debe tomar en cuenta el tamaño de la imagen (en terminos informáticos), ya que mientras más grande sea su tamaño, más tardará en cargarse.</li>
+                </ul>
+                <li class="pregunta">Como ingeniero de software, ¿cuál es tu recomendación al elegir las unidades de un propiedad de estilo entre %, px y pt?</li>
+                <ul class="nes-list is-circle">
+                    <li>Hay que usar px o pt, px siempre hace referencia al tamaño de la pantalla, mientras que pt y % siempre serán relativas al tamaño de esta, cada una tiene sus ventajas y desventajas, si el tamaño de los monitores será constante, es mejor usar px, pero si el tamaño puede variar mucho, usar pt.</li>
+                </ul>
+                <li class="pregunta">¿Por qué el uso de una versión minimizada del CSS mejora el rendimiento del sitio?</li>
+                <ul class="nes-list is-circle">
+                    <li>Debido a que se eliminan cosas que el sistema no necesita realmente, como las indentaciones, espacios en blanco, etc. A nosotros nos sirve para tener las cosas organizadas, pero la computadora recorre el código caracter por caracter, por lo que reducir la cantidad mejora el rendimiento.</li>
+                </ul>
+            
             </ul>
         </section>
-        <section id="Lab3">
-            <p><b>Preguntas Lab 3:</b></p>
-            <ul>
-                <li>
-                    <span class="pregunta">Como ingeniero de software ¿cuál es tu recomendación sobre el uso de !important en un CSS?</span>
-                    <ul>
-                        <li>Mi recomendación es que se use con cuidado y cuando se quiere dar prioridad a algo, normalmente la prioridad que se da en cuanto al estilo denominado por un CSS va en orden de ID, Clase, Elemento, y el selector universal (*) al final, sin embargo, usar !important hace que el atributo marcado como importante se tome como la más alta prioridad sin importar donde se definió.</li>
-                    </ul>
-                </li>
-                <li>
-                    <span class="pregunta">Si se pone una imagen de fondo en una página HTML, ¿por qué debe escogerse con cuidado?</span>
-                    <ul>
-                        <li>Se debe tomar en cuenta el tamaño de la imagen (en terminos informáticos), ya que mientras más grande sea su tamaño, más tardará en cargarse.</li>
-                    </ul>
-                </li>
-                <li>
-                    <span class="pregunta">Como ingeniero de software, ¿cuál es tu recomendación al elegir las unidades de un propiedad de estilo entre %, px y pt?</span>
-                    <ul>
-                        <li>Hay que usar px, ya que px siempre hace referencia al tamaño de la pantalla, mientras que pt y % siempre serán relativas a otra unidad.</li>
-                    </ul>
-                </li>
-                <li>
-                    <span class="pregunta">¿Por qué el uso de una versión minimizada del CSS mejora el rendimiento del sitio?</span>
-                    <ul>
-                        <li>Debido a que se eliminan cosas que el sistema no necesita realmente, como las indentaciones, espacios en blanco, etc. A nosotros nos sirve para tener las cosas organizadas, pero la computadora recorre el código caracter por caracter, por lo que reducir la cantidad mejora el rendimiento.</li>
-                    </ul>
-                </li>
+        <ul><button class="nes-btn is-primary" onclick="TextToggle('Lab4')">Laboratorio 4</button></ul>
+        <section id="Lab4" style="display:none">
+            <ul class="nes-list is-disc">
+                <li class="pregunta">¿Qué diferencias y semejanzas hay entre Java y JavaScript?</li>
+                <ul class="nes-list is-circle">
+                    <li>Según el sitio de Java, JavaScript no es parte de la plataforma Java, no crea applets ni aplicaciones independientes, ya que principalmente se usa en documentos HTML y otros archivos que usualmente son lanzados a la web. Java en cambio puede ser independiente, si no, no existiría Minecraft versión Java.</li>
+                </ul>
+                <li class="pregunta">¿Qué métodos tiene el objeto Date? (Menciona al menos 5*)</li>
+                <ul class="nes-list is-circle">
+                    <li><b>getDate:</b> Obtiene el día actual del mes, basándose en el horario del sistema.</li>
+                    <li><b>getDay:</b> Obtiene el día de la semana del día actual, basándose en el horario del sistema.</li>
+                    <li><b>getFullYear:</b> Obtiene el año de la fecha especificada, basándose en el horario del sistema.</li>
+                    <li><b>getHours:</b> Obtiene la hora de la fecha especificada, basándose en el horario del sistema.</li>
+                    <li><b>getMonth:</b> Obtiene el día actual del mes, basándose en el horario del sistema, Enero inicia como 0, y Diciembre termina como 11.</li>
+                </ul>
+                <li class="pregunta">¿Qué métodos tienen los arreglos? (Menciona al menos 5*)</li>
+                <ul class="nes-list is-circle">
+                    <li><b>shift:</b> Elimina el primer elemento de un arreglo.</li>
+                    <li><b>pop:</b> Elimina el último elemento de un arreglo, y lo regresa como valor.</li>
+                    <li><b>slice:</b> Clona el arreglo a un nuevo arreglo, una copia superficial.</li>
+                    <li><b>length:</b> Refleja el numero de elementos en el arreglo.</li>
+                    <li><b>reverse:</b> Invierte el orden de los elementos en un arreglo.</li>
+                </ul>
+                <li class="pregunta">¿Cómo se declara una variable con alcance local dentro de una función?</li>
+                <ul class="nes-list is-circle">
+                    <li>Se declara con la palabra “let”, para declarar constantes se usa const, y para variables se usa var, sin embargo, let solo existe dentro de la función en la que es llamada.</li>
+                </ul>
+                <li class="pregunta">¿Qué implicaciones tiene utilizar variables globales dentro de funciones?</li>
+                <ul class="nes-list is-circle">
+                    <li>Implica que se cambiara el valor de la variable global definida con var, o que se hará una consulta a un valor predefinido.</li>
+                </ul>
+            </ul>
+        </section>
+        <ul><button class="nes-btn is-primary" onclick="TextToggle('Lab4EX')">Laboratorio 4 - Preguntas</button></ul>
+        <!-- section id="Lab4EX" style="display:none"></section> <-->
+        <ul><button class="nes-btn is-primary" onclick="TextToggle('Lab5')">Laboratorio 5</button></ul>
+        <section id="Lab5" style="display:none">
+            <ul class="nes-list is-disc">
+                <li class="pregunta">¿Qué es Material Design?</li>
+                <ul class="nes-list is-circle">
+                    <li>Es un sistema de diseño creado por Google en 2014, que dicta las mejores practicas para el diseño de UI, una forma de colaboración entre diseñadores y desarrolladores (según el sitio de Material Design).</li>
+                </ul>
+            </ul>
         </section>
     </body>
+    <script type = "text/javascript" src = "Lab4.js"></script>
+    <script type = "text/javascript" src = "Lab6.js"></script>
 </html>
