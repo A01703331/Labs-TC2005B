@@ -4,17 +4,18 @@
         <title>Sitio de Laboratorios - A01703331</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="./node_modules/nes.css/css/nes.min.css">
-        <link rel="stylesheet" href="Lab3.min.css">
+        <link rel="stylesheet" href="Lab3.css">
     </head>
     <body>
         <h1>Hecho con <a class="link" href="https://code.visualstudio.com/">Visual Studio Code</a></h1>
-        <p class="section-head">José Sebastián Pedrero Jiménez - A01703331</p><i class="nes-mario"></i>
+        <p class="section-head">José Sebastián Pedrero Jiménez - A01703331</p>
+        <button class ="hidden"><i onclick="changeStyle()" class="nes-mario"></i></button>
         <p class="section-head"><b>Contacto:</b></p>
         <ul class="nes-list is-disc">
             <li><b>Correos:</b> a01703331@tec.mx, sebastian.p.jimenez@gmail.com, adriftinvr.mkl@gmail.com</li>
             <li><b>Celular:</b> (+52) 442 613 9123</li>
         </ul>
-        <p class="section-head"><b>Preguntas:</b></p>
+        <h2 class="section-head"><b>Preguntas:</b></h2>
         <ul><button class="nes-btn is-primary" onclick="TextToggle('Lab1')">Laboratorio 1</button></ul>
         <section id="Lab1" style="display:none">
             <ul class="nes-list is-disc">
@@ -157,15 +158,56 @@
                 </ul>
             </ul>
         </section>
-        <ul><button class="nes-btn is-primary" onclick="TextToggle('Lab4EX')">Laboratorio 4 - Preguntas</button></ul>
-        <!-- section id="Lab4EX" style="display:none"></section> <-->
-        <ul><button class="nes-btn is-primary" onclick="TextToggle('Lab5')">Laboratorio 5</button></ul>
+        <ul>
+            <button class="nes-btn is-primary" onclick="TextToggle('Lab4EX')">Laboratorio 4 - Preguntas</button>
+        </ul>
+        <section id="Lab4EX" style="display:none">
+            <ul>
+                <button class="nes-btn is-success" onclick="Questions('Lab4EX')">Contestar</button>
+            </ul>
+        </section>
+        <ul>
+            <button class="nes-btn is-primary" onclick="TextToggle('Lab5')">Laboratorio 5</button>
+        </ul>
         <section id="Lab5" style="display:none">
             <ul class="nes-list is-disc">
                 <li class="pregunta">¿Qué es Material Design?</li>
                 <ul class="nes-list is-circle">
                     <li>Es un sistema de diseño creado por Google en 2014, que dicta las mejores practicas para el diseño de UI, una forma de colaboración entre diseñadores y desarrolladores (según el sitio de Material Design).</li>
                 </ul>
+            </ul>
+        </section>
+        <ul>
+            <button class="nes-btn is-primary" onclick="TextToggle('Lab6')">Laboratorio 6</button>
+        </ul>
+        <section id="Lab6" style="display:none">
+            <ul class="nes-list is-disc">
+                <li class="pregunta">¿Por qué es una buena práctica usar JavaScript para checar que sean válidos los inputs de las formas antes de enviar los datos al servidor?</li>
+                <ul class="nes-list is-circle">
+                    <li>Para asegurarnos de que no haya datos que no cumplan con los requisitos necesarios y que puedan estropear el sistema entero, además de que se checa el formato de los datos ingresados y si hay un error, se debería evitar que los datos se envíen.</li>
+                </ul>
+                <li class="pregunta">•	¿Cómo puedes saltarte la seguridad de validaciones hechas con JavaScript?</li>
+                <ul class="nes-list is-circle">
+                    <li>Al no incluir la palabra clave “Required”</li>
+                </ul>
+                <li class="pregunta">•	Si te puedes saltar la seguridad de las validaciones de JavaScript, entonces ¿por qué la primera pregunta dice que es una buena práctica?</li>
+                <ul class="nes-list is-circle">
+                    <li>Por que si no hacemos la validación podríamos accidentalmente enviar datos que estropean nuestro sistema, podríamos hacer una analogía donde hacer esta práctica es como ponerse el cinturón al entrar a un auto, se puede saltar, pero un movimiento en falso y todo termina en catástrofe, en cambio, si uno trae puesto el cinturón puede que el desastre sea mucho más leve.</li>
+                </ul>
+            </ul>
+        </section>
+        <ul>
+            <button class="nes-btn is-primary" onclick="TextToggle('Lab6EX')">Laboratorio 6 - Ejercicios</button>
+        </ul>
+        <section id="Lab6EX" style="display:none">
+            <ul class="nes-field">
+                <label class="pregunta" for="confirmtxt">Registrar Contraseña:</label>
+                <input type="password" id="confirmtxt" placeholder="Contraseña">
+                <label class="pregunta" for="pswrdtxt">Confirmar Contraseña:</label>
+                <input type="password" id="pswrdtxt" placeholder="Contraseña">
+            </ul>
+            <ul>
+                <button class ="nes-btn is-warning" onclick="validate()">Verificar Contraseña</button>
             </ul>
         </section>
     </body>

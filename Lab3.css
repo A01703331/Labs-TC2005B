@@ -14,9 +14,19 @@ button {
     line-height: 2;
 }
 
-.section-head {
+button.hidden {
+    background:none;
+    border:none;
+}
+
+.section-head, label {
     font-family:'Mochiy Pop One';
     font-size: 18px;
+}
+
+input {
+    font-family:'Mochiy Pop One';
+    font-size: 12px;
 }
 
 .pregunta {
