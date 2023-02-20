@@ -24,11 +24,6 @@ button.hidden {
     font-size: 18px;
 }
 
-input {
-    font-family:'Mochiy Pop One';
-    font-size: 12px;
-}
-
 .pregunta {
     font-size: 15px;
     font-weight: bold;
@@ -47,4 +42,15 @@ ul {
 
 b {
     font-weight: bold;
+}
+
+input {
+    font-family:'Mochiy Pop One';
+    background-color: #ddd;
+    font-size: 12px;
+}
+
+::placeholder {
+    color: #444;
+    opacity: 0.8;
 }

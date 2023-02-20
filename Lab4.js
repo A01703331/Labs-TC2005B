@@ -70,14 +70,14 @@ function Questions(targetID){
     let targetLocation = document.getElementById(targetID);
     let htmlInner = targetLocation.innerHTML;
 
-    htmlInner="<ul><button class='nes-btn is-success' onclick="+"Questions('Lab4EX')"+">Contestar</button></ul><ul class='nes-list is-disc'>";
+    htmlInner="<ul><ul><button class='nes-btn is-success' onclick="+"Questions('Lab4EX')"+">Contestar</button></ul></ul><ul class='nes-list is-disc'>";
 
     let numInp = prompt("Dame un número", "0");
     while (numInp <= 0){
         numInp = prompt("Pero que sea un número mayor a 0", "0");
     }
     var number = parseInt(numInp);
-    htmlInner+="<li class = 'pregunta'> Cuadrados y Cubos desde 1 hasta " + number +".</li><ul class='nes-list is-circle'>";
+    htmlInner+="<ul><li class = 'pregunta'> Cuadrados y Cubos desde 1 hasta " + number +".</li><ul class='nes-list is-circle'>";
     for (let i = 1; i <= number; i++) {
         htmlInner +="<li>"+i+" "+i*i+" "+i*i*i+"</li>";
     }
@@ -119,6 +119,6 @@ function Questions(targetID){
     let total_coins = new Coins(30);
     htmlInner +="<ul class='nes-list is-circle'><li>The perpetrator owes "+total_coins.yevaded+" coins to the IRS.</li>";
     htmlInner +="<li>The cost of legal fees for evading the IRS for "+total_coins.years+" years is an estimated "+total_coins.legal+" coins.</li>"
-    htmlInner +="<li>That means Yoshi owes a total of "+total_coins.total+" coins for evading the IRS for "+total_coins.years+" years.</li></ul></ul>";
+    htmlInner +="<li>That means Yoshi owes a total of "+total_coins.total+" coins for evading the IRS for "+total_coins.years+" years.</li></ul></ul></ul>";
     targetLocation.innerHTML = htmlInner;
 }

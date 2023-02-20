@@ -71,10 +71,23 @@ function totals(){
     purchase = document.getElementById("Purchase");
     purchase.innerHTML = (x*10 + y*15 + z*20) + " Dollars (Tax included)"
 }
-/*
+
+var fontSwitch = false;
+var matches = document.querySelectorAll('li');
+var storeFont;
+storeFont = matches[0].style.fontFamily
+
 function changeStyleSummon(){
-    var matches = document.querySelectorAll('h1');
-    matches.forEach(function(target) {
-        target.style.fontFamily = 'Mochiy Pop One';
-    });
-}*/
+    if (!fontSwitch){
+        fontSwitch = !fontSwitch;
+        matches.forEach(function(target) {
+            target.style.fontFamily = 'Mochiy Pop One';
+        });
+    }
+    else{
+        fontSwitch = !fontSwitch; 
+        matches.forEach(function(target) {
+            target.style.fontFamily = storeFont;
+        });
+    }
+}
