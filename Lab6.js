@@ -77,7 +77,8 @@ var matches = document.querySelectorAll('li');
 var storeFont;
 storeFont = matches[0].style.fontFamily
 
-function changeStyleSummon(){
+function changeStyle(){
+    matches = document.querySelectorAll('li');
     if (!fontSwitch){
         fontSwitch = !fontSwitch;
         matches.forEach(function(target) {
