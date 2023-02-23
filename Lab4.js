@@ -23,15 +23,31 @@ function counter(myArray){
 
 function averages(myArray){
     let sum=0;
+    let count = 0;
     let avg=0;
+    let text ="<li>El promedio del arreglo [";
     for(let i=0; i< myArray.length; i++) {
         let x = myArray[i];
+        text += "(";
         for(let j=0; j< x.length; j++) {
+            count++;
             sum = sum + x[j];
+            if (j==x.length-1){
+                text += x[j];
+            }
+            else {
+                text += x[j]+","
+            }
+        }
+        if (i==myArray.length-1){
+            text += ")";
+        }
+        else {
+            text += "),";
         }
     }
-    avg = sum/4;
-    let text ="<li>El promedio del arreglo ((9,8),(9,7)) es "+avg+"</li>";
+    avg = sum/count;
+    text += "] es "+avg+"</li>";
     return text;
 }
 
@@ -40,29 +56,29 @@ function reverseNum(num){
 }
 
 function Coins(years){
-        this.years = years;
-        this.yevaded = years_evaded(years);
-        this.legal = legal_fees(years);
-        this.total = calculation(years);
-    }
+    this.years = years;
+    this.yevaded = years_evaded(years);
+    this.legal = legal_fees(years);
+    this.total = calculation(years);
+}
 
-    function years_evaded(years){
-        var coins = 0
-        for(let i=0; i< parseInt(years); i++){
-            coins = coins + 1000
-        }
-        return coins
+function years_evaded(years){
+    var coins = 0
+    for(let i=0; i< parseInt(years); i++){
+        coins = coins + 1000
     }
+    return coins
+}
 
-    function legal_fees(years){
-        var coins = 0
-        for(let i=1; i< parseInt(years); i++){
-            coins = coins + 200
-        }
-        return coins
+function legal_fees(years){
+    var coins = 0
+    for(let i=1; i< parseInt(years); i++){
+        coins = coins + 200
     }
+    return coins
+}
 
-    function calculation(years){
+function calculation(years){
     return years_evaded(years) + legal_fees(years)
 }
 
@@ -79,7 +95,7 @@ function Questions(targetID){
     var number = parseInt(numInp);
     htmlInner+="<ul><li class = 'pregunta'> Cuadrados y Cubos desde 1 hasta " + number +".</li><ul class='nes-list is-circle'>";
     for (let i = 1; i <= number; i++) {
-        htmlInner +="<li>"+i+" "+i*i+" "+i*i*i+"</li>";
+        htmlInner +="<li>Base: "+i+" Cuadrado: "+i*i+" Cubo: "+i*i*i+"</li>";
     }
     htmlInner +="</ul>";
     let x = random(0,20);
@@ -101,11 +117,27 @@ function Questions(targetID){
     array1 = new Array();
     for (let i = 0; i <= 9; i++){
         numA = prompt("Dame un número, el que sea. ("+(i+1)+"/10)");
+        while (isNaN(numA) || numA === ""){
+            numA = prompt("Dame un NÚMERO, el que sea. ("+(i+1)+"/10)");
+        }
         array1.push(parseInt(numA));
     }
     htmlInner += counter(array1);
 
-    let array2 = [[9,8],[9,7]];
+    var array2 = new Array();
+    var numArrays = prompt("Dame un número de arreglos a crear","2");
+    var numElems = prompt("Dame un número de elementos por cada arreglo","2");
+    for (let i = 0; i < numArrays; i++){
+        let arrayInner = new Array();
+        for (let j = 0; j < numElems; j++){
+            numA = prompt("Dame un número para poner en un arreglo Elemento "+(j+1)+"/"+numElems+", Arreglo "+(i+1)+"/"+numArrays);
+            while (isNaN(numA) || numA === ""){
+                numA = prompt("Dame un NÚMERO para poner en un arreglo Elemento "+(j+1)+"/"+numElems+", Arreglo "+(i+1)+"/"+numArrays)
+            }
+            arrayInner.push(parseInt(numA));
+        }
+        array2.push(arrayInner);
+    }
     htmlInner += averages(array2);
 
     numInp = prompt("Dame un número para invertir", "0");
