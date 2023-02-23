@@ -25,29 +25,47 @@ function averages(myArray){
     let sum=0;
     let count = 0;
     let avg=0;
-    let text ="<li>El promedio del arreglo [";
-    for(let i=0; i< myArray.length; i++) {
-        let x = myArray[i];
-        text += "(";
-        for(let j=0; j< x.length; j++) {
-            count++;
-            sum = sum + x[j];
-            if (j==x.length-1){
-                text += x[j];
+    let text;
+    if (myArray.length < 1) {
+        text ="<li>El promedio del arreglo [";
+        for(let i=0; i< myArray.length; i++) {
+            let x = myArray[i];
+            text += "(";
+            for(let j=0; j< x.length; j++) {
+                count++;
+                sum = sum + x[j];
+                if (j==x.length-1){
+                    text += x[j];
+                }
+                else {
+                    text += x[j]+","
+                }
+            }
+            if (i==myArray.length-1){
+                text += ")";
             }
             else {
-                text += x[j]+","
+                text += "),";
             }
         }
-        if (i==myArray.length-1){
-            text += ")";
-        }
-        else {
-            text += "),";
-        }
+        avg = sum/count;
+        text += "] es "+avg+"</li>";
     }
-    avg = sum/count;
-    text += "] es "+avg+"</li>";
+    else {
+        text ="<li>El promedio del arreglo (";
+        for(let j=0; j< myArray.length; j++) {
+            count++;
+            sum = sum + myArray[j];
+            if (j==myArray.length-1){
+                text += myArray[j];
+            }
+            else {
+                text += myArray[j]+","
+            }
+        }
+        avg = sum/count;
+        text += ") es "+avg+"</li>";
+    }
     return text;
 }
 
