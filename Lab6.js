@@ -74,7 +74,8 @@ function totals(){
 
 var fontSwitch = false;
 var matches = document.querySelectorAll('li');
-var storeFont = matches[0].style.fontFamily;
+var storeFont;
+storeFont = matches[0].style.fontFamily
 
 function changeStyle(){
     matches = document.querySelectorAll('li');
