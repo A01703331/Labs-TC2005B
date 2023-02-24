@@ -106,9 +106,10 @@ function Questions(targetID){
 
     htmlInner="<ul><ul><button class='nes-btn is-success' onclick="+"Questions('Lab4EX')"+">Contestar</button></ul></ul><ul class='nes-list is-disc'>";
 
-    let numInp = prompt("Dame un número", "0");
-    while (numInp <= 0){
-        numInp = prompt("Pero que sea un número mayor a 0", "0");
+    let numInp = prompt("Dame un número mayor a 0", "0");
+    while (isNaN(numA) || numA === ""){
+        if ((yy))
+        numInp = prompt("Dame un NÚMERO mayor a 0", "0");
     }
     var number = parseInt(numInp);
     htmlInner+="<ul><li class = 'pregunta'> Cuadrados y Cubos desde 1 hasta " + number +".</li><ul class='nes-list is-circle'>";
