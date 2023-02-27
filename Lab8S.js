@@ -1,4 +1,5 @@
 const http = require('http');
+const red = require('url');
 const fs = require('fs');
 
 const port=1128; 
@@ -21,12 +22,11 @@ fs.readFile('./Lab1.html', "UTF-8", function (err, htmlData) {
             radios += "<label for='ml'>Mario</label></div>";
             radios += "<div><input type='radio' id='lm' name='Brother' value='Luigi'>";
             radios += "<label for='lm'>Luigi</label></div></fieldset>";
+            radios += "<label for='wl'>Anyone else?</label>";
+            radios += "<input type='text' id='wl' name='third_party'><br>";
+            radios += "<input type='submit' value='Go!'>";
+            radios += "</form>";
             response.write(radios);
-            response.write("<label for='wl'>Anyone else?</label>");
-            response.write("<input type='text' id='wl' name='third_party'><br>");
-            response.write("<input type='submit' value='Go!'>")
-            response.write("</form>");
-
         } else if (request.url === '/character_select' && request.method==='POST') {
             const datos = [];
             request.on('data', (data_item) => {
@@ -35,13 +35,17 @@ fs.readFile('./Lab1.html', "UTF-8", function (err, htmlData) {
             });
             return request.on('end', () => {
                 const data_sheet = Buffer.concat(datos).toString();
+                const char_selection = data_sheet.split('&')[0].split('=')[1];
                 console.log(data_sheet);
+                console.log(char_selection);
                 response.write('Loading...');
                 return response.end();
             });
-        } else {
+        } else if (request.url === '/404') {
             response.statusCode = 404;
             response.write("Error 404, Planet Not Found");
+        } else {
+            response.writeHead(301, { Location: '/404' });
         }
         response.write('</body></html>')
         response.end();
