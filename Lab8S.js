@@ -14,9 +14,9 @@ fs.readFile('./Lab1.html', "UTF-8", function (err, htmlData) {
         response.setHeader("Content-Type", "text/html");  
         if(request.url === '/') {
             response.write(htmlData);
-            response.write("<a href='/character_select'>Choose your character!</a>");
-        } else if (request.url === '/character_select' && request.method==='GET') {
-            response.write("<form action='/character_select' method='POST'>");
+            response.write("<a href='/charSelect'>Choose your character!</a>");
+        } else if (request.url === '/charSelect' && request.method==='GET') {
+            response.write("<form action='/charSelect' method='POST'>");
             let radios = "<fieldset><legend> Select a brother:</legend>";
             radios += "<div><input type='radio' id='ml' name='Brother' value='Mario'>";
             radios += "<label for='ml'>Mario</label></div>";
@@ -27,7 +27,7 @@ fs.readFile('./Lab1.html', "UTF-8", function (err, htmlData) {
             radios += "<input type='submit' value='Go!'>";
             radios += "</form>";
             response.write(radios);
-        } else if (request.url === '/character_select' && request.method==='POST') {
+        } else if (request.url === '/charSelect' && request.method==='POST') {
             const datos = [];
             request.on('data', (data_item) => {
                 console.log(data_item);
