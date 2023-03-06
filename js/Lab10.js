@@ -8,6 +8,7 @@ var kart_selection;
 var map_selection;
 
 http.createServer((request, response) => {  
+    console.log(request.url);
     response.setHeader("Content-Type", "text/html");  
     if(request.url === '/') {
         datos = [];

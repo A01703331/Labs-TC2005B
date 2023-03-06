@@ -1,9 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-
+const myRoutes = require('./routes/routes.js');
 
 app.use(bodyParser.urlencoded({extended: false}))
+
+app.use('/extra', myRoutes); //Importante: Nunca poner inclusiones después del estado 404
 
 //Middleware
 app.use((request, response, next) => {
