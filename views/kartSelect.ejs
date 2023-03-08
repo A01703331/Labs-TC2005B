@@ -1,0 +1,13 @@
+<form action='/<%= from %>/mapSelect' method='POST'>
+    <fieldset>
+        <legend>Select your kart:</legend>
+        <% for (let kart of karts) { %>
+        <div>
+            <input type='radio' id='<%= kart.kartID %>' name='kart' value='<%= kart.kartName %>'>
+            <label for='<%= kart.kartID %>'><%= kart.kartName %></label>
+        </div>
+        <% } %>
+    </fieldset>
+    <br>
+    <input type='submit' value='OK!'>
+</form>

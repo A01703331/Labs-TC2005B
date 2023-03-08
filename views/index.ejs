@@ -1,26 +1,8 @@
-<!DOCTYPE html>
-<html lang = "ES">
-    <head>
-        <title>Sitio de Laboratorios - A01703331</title>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="public/css/nes.min.css">
-        <link rel="stylesheet" href="public/css/Lab3.min.css">
-    </head>
+<%- include('header.ejs') %>
     <body>
-        <section id="PageTop">
-            <ul>
-                <h1>Hecho con <a class="link" href="https://code.visualstudio.com/">Visual Studio Code</a></h1>
-                <p class="section-head">José Sebastián Pedrero Jiménez - A01703331</p>
-                <button class ="hidden"><i onclick="changeStyle()" class="nes-mario"></i></button>
-                <p class="section-head"><b>Contacto:</b></p>
-                <ul class="nes-list is-disc">
-                    <li><b>Correos:</b> a01703331@tec.mx, sebastian.p.jimenez@gmail.com, adriftinvr.mkl@gmail.com</li>
-                    <li><b>Celular:</b> (+52) 442 613 9123</li>
-                </ul>
-                <h2 class="section-head"><b>Preguntas:</b></h2>
-            </ul>
-        </section>
+        <%- include('pageTop.ejs')%>
         <ul>
+            <h2 class="section-head"><b>Preguntas:</b></h2>
             <button class="nes-btn is-primary" onclick="TextToggle('Lab1')">Laboratorio 1</button>
         </ul>
         <section id="Lab1" style="display:none">
@@ -235,6 +217,23 @@
             </ul>
         </section>
         <ul>
+            <button class="nes-btn is-primary" onclick="TextToggle('Lab10EX')">Laboratorio 10 - Modulos</button>
+        </ul>
+        <section id="Lab10EX" style="display:none">
+            <ul>
+                <ul>
+                    <a href="/versus/charSelect">  
+                        <button class="nes-btn is-warning">Versus</button>  
+                    </a>
+                </ul>
+                <ul>
+                    <a href="/battle/charSelect">  
+                        <button class="nes-btn is-error">Battle</button>  
+                    </a>
+                </ul>
+            </ul>
+        </section>
+        <ul>
             <button class="nes-btn is-primary" onclick="TextToggle('Lab11')">Laboratorio 11</button>
         </ul>
         <section id="Lab11" style="display:none">
@@ -248,6 +247,6 @@
             </ul>
         </section>
     </body>
-    <script type = "text/javascript" src = "public/js/Lab4.js"></script>
-    <script type = "text/javascript" src = "public/js/Lab6.js"></script>
+    <script type = "text/javascript" src = "/js/Lab4.js"></script>
+    <script type = "text/javascript" src = "/js/Lab6.js"></script>
 </html>

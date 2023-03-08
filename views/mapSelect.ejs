@@ -1,0 +1,13 @@
+<form action='/<%= from %>/confirm' method='POST'>
+    <fieldset>
+        <legend>Select map:</legend>
+        <% for (let map of maps) { %>
+        <div>
+            <input type='radio' id='<%= map.mapID %>' name='map' value='<%= map.mapName %>'>
+            <label for='<%= map.mapID %>'><%= map.mapName %></label>
+        </div>
+        <% } %>
+    </fieldset>
+    <br>
+    <input type='submit' value='OK!'>
+</form>

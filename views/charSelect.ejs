@@ -1,0 +1,13 @@
+<form action='/<%= from %>/kartSelect' method='POST'>
+    <fieldset>
+        <legend>Select your player:</legend>
+        <% for (let character of characters) { %>
+        <div>
+            <input type='radio' id='<%= character.charID %>' name='character' value='<%= character.charName %>'>
+            <label for='<%= character.charID %>'><%= character.charName %></label>
+        </div>
+        <% } %>
+    </fieldset>
+    <br>
+    <input type='submit' value='OK!'>
+</form>
