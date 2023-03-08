@@ -1,0 +1,11 @@
+<form action='https://www.youtube.com/watch?v=' method='GET'>
+    <fieldset>
+        <legend>Is this OK?</legend>
+        <ul>Character: <%= character %></ul>
+        <ul>Kart: <%= kart %></ul>
+        <ul>Track: <%= map %></ul>
+    </fieldset>
+    <br>
+    <input type="hidden" name="v" value='<%= link %>'>
+    <button type="submit">GO!</button>
+</form>
