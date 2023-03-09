@@ -41,17 +41,17 @@ exports.Vconfirm =  (request, response, next) => {
     map_selection = request.body.map;
     let redirect;
     if(map_selection=='Mario Circuit'){
-        redirect = 'cthJ4qKq5JU';
+        redirect = '-HaMsPMRlA8';
     } else if (map_selection=='Coconut Mall'){
         redirect = 'omNPg-ttAZ0';
     } else if (map_selection=='Singapore Speedway'){
-        redirect = 'cT_wI8wA_Ek';
+        redirect = '-JfhBus8qvU';
     } else if (map_selection=="Toad's Factory"){
         redirect = 'F6oDoGqSk2g';
     } else if (map_selection=="Yoshi's Island"){
-        redirect = 'Ve9s6kOeKM8';
+        redirect = 'ev9ubsGxbR0';
     } else if (map_selection=='DK Summit'){
-        redirect = '3BYLEIXshqo';
+        redirect = 'HL9RN8VFojY';
     } else if (map_selection=="Bowser's Castle"){
         redirect = 'MDhG8I9Bhdg';
     } else if (map_selection=='Rainbow Road'){
@@ -59,7 +59,7 @@ exports.Vconfirm =  (request, response, next) => {
     } else {
         redirect = 'dQw4w9WgXcQ';
     }
-    response.render(path.join(__dirname, '..', 'views', 'confirm'), {character: char_selection, kart: kart_selection, map: map_selection, link: redirect})
+    response.render(path.join(__dirname, '..', 'views', 'confirm'), {character: char_selection, kart: kart_selection, map: map_selection, link: redirect, from: 'versus'})
 };
 
 exports.Bconfirm = (request, response, next) => {
@@ -84,5 +84,5 @@ exports.Bconfirm = (request, response, next) => {
     } else {
         redirect = '8kN1IULIq-M';
     }
-    response.render(path.join(__dirname, '..', 'views', 'confirm'), {character: char_selection, kart: kart_selection, map: map_selection, link: redirect})
+    response.render(path.join(__dirname, '..', 'views', 'confirm'), {character: char_selection, kart: kart_selection, map: map_selection, link: redirect, from: 'battle'})
 };

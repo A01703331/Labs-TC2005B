@@ -19,6 +19,13 @@ button.hidden {
     border:none;
 }
 
+#confirm {
+    font-size: 1.5rem;
+    line-height: 3;
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
 .section-head, label {
     font-family:'Mochiy Pop One';
     font-size: 18px;
@@ -34,6 +41,12 @@ ul {
     font-size: 14px;
     font-weight:200;
     line-height: 1.7;
+}
+
+.element {
+    font-family: 'New Super Mario Font U';
+    font-size: 2rem;
+    line-height: 1;
 }
 
 .link:hover {

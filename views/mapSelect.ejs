@@ -1,13 +1,25 @@
-<form action='/<%= from %>/confirm' method='POST'>
-    <fieldset>
-        <legend>Select map:</legend>
-        <% for (let map of maps) { %>
-        <div>
-            <input type='radio' id='<%= map.mapID %>' name='map' value='<%= map.mapName %>'>
-            <label for='<%= map.mapID %>'><%= map.mapName %></label>
-        </div>
-        <% } %>
-    </fieldset>
+<%- include('header.ejs') %>
+<head>
+    <title>Select Map!</title>
+</head>
+<body>
     <br>
-    <input type='submit' value='OK!'>
-</form>
+    <ul>
+        <form action='/<%= from %>/confirm' method='POST'>
+            <fieldset class="nes-container with-title">
+                <p class="title">Select map:</p>
+                <% for (let map of maps) { %>
+                    <label>
+                        <input type='radio' class="nes-radio" id='<%= map.mapID %>' name='map' value='<%= map.mapName %>' checked>
+                        <span class='element' for='<%= map.mapID %>'><%= map.mapName %></span>
+                    </label>
+                    <br>
+                <% } %>
+            </fieldset>
+            <br>
+            <ul>
+                <button class="nes-btn is-primary" type='submit'><span id="confirm" >OK!</span></button>
+            </ul>
+        </form>
+    </ul>
+</body>

@@ -1,6 +1,6 @@
 const versus_maps = [
     {
-        mapName: "Mario Circuit 1",
+        mapName: "Mario Circuit",
         mapID: "mc"
     },
     {

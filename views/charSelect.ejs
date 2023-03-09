@@ -1,13 +1,25 @@
-<form action='/<%= from %>/kartSelect' method='POST'>
-    <fieldset>
-        <legend>Select your player:</legend>
-        <% for (let character of characters) { %>
-        <div>
-            <input type='radio' id='<%= character.charID %>' name='character' value='<%= character.charName %>'>
-            <label for='<%= character.charID %>'><%= character.charName %></label>
-        </div>
-        <% } %>
-    </fieldset>
+<%- include('header.ejs') %>
+<head>
+    <title>Select your Player!</title>
+</head>
+<body>
     <br>
-    <input type='submit' value='OK!'>
-</form>
+    <ul>
+        <form action='/<%= from %>/kartSelect' method='POST'>
+            <fieldset class="nes-container with-title">
+                <p class="title">Select your player:</p>
+                <% for (let character of characters) { %>
+                    <label>
+                        <input type='radio' class="nes-radio" id='<%= character.charID %>' name='character' value='<%= character.charName %>' checked>
+                        <span class='element' for='<%= character.charID %>'><%= character.charName %></span>
+                    </label>
+                    <br>
+                <% } %>
+            </fieldset>
+            <br>
+            <ul>
+                <button class="nes-btn is-primary" type='submit'><span id="confirm" >OK!</span></button>
+            </ul>
+        </form>
+    </ul>
+</body>

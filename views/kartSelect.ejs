@@ -1,13 +1,25 @@
-<form action='/<%= from %>/mapSelect' method='POST'>
-    <fieldset>
-        <legend>Select your kart:</legend>
-        <% for (let kart of karts) { %>
-        <div>
-            <input type='radio' id='<%= kart.kartID %>' name='kart' value='<%= kart.kartName %>'>
-            <label for='<%= kart.kartID %>'><%= kart.kartName %></label>
-        </div>
-        <% } %>
-    </fieldset>
+<%- include('header.ejs') %>
+<head>
+    <title>Select your Kart!</title>
+</head>
+    <body>
     <br>
-    <input type='submit' value='OK!'>
-</form>
+    <ul>
+        <form action='/<%= from %>/mapSelect' method='POST'>
+            <fieldset class="nes-container with-title">
+                <p class="title">Select your kart:</p>
+                <% for (let kart of karts) { %>
+                    <label>
+                        <input type='radio' class="nes-radio" id='<%= kart.kartID %>' name='kart' value='<%= kart.kartName %>' checked>
+                        <span class='element' for='<%= kart.kartID %>'><%= kart.kartName %></span>
+                    </label>
+                    <br>
+                <% } %>
+            </fieldset>
+            <br>
+            <ul>
+                <button class="nes-btn is-primary" type='submit'><span id="confirm" >OK!</span></button>
+            </ul>
+        </form>
+    </ul>
+</body>

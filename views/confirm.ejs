@@ -1,11 +1,28 @@
-<form action='https://www.youtube.com/watch?v=' method='GET'>
-    <fieldset>
-        <legend>Is this OK?</legend>
-        <ul>Character: <%= character %></ul>
-        <ul>Kart: <%= kart %></ul>
-        <ul>Track: <%= map %></ul>
-    </fieldset>
+<%- include('header.ejs') %>
+<head>
+    <title>OK?</title>
+</head>
+<body>
     <br>
-    <input type="hidden" name="v" value='<%= link %>'>
-    <button type="submit">GO!</button>
-</form>
+    <ul>
+        <form action='https://www.youtube.com/watch?v=' method='GET'>
+            <fieldset class="nes-container with-title">
+                <p class="title">Is this OK?</p>
+                <ul class="nes-list is-circle">
+                    <li class = 'element'>Character: <%= character %></li>
+                    <li class = 'element'>Kart: <%= kart %></li>
+                    <% if(from == 'versus'){ %>
+                        <li class = 'element'>Track: <%= map %></li>
+                    <% }  else {%>
+                        <li class = 'element'>Map: <%= map %></li>
+                    <% } %> 
+                </ul>
+            </fieldset>
+            <br>
+            <ul>
+                <input type="hidden" name="v" value='<%= link %>'>
+                <button class="nes-btn is-primary" type='submit'><span id="confirm" >GO!</span></button>
+            </ul>
+        </form>
+    </ul>
+</body>
