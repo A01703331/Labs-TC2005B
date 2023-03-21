@@ -1,0 +1,65 @@
+<%- include('header.ejs') %>
+<%- include('bootstrap.ejs') %>
+
+<body class="p-3 mb-2 bg-primary-subtle text-emphasis-primary cursor">
+    
+    <div class="container text-center">
+        <div class="row">
+            <div class="col">
+                <div class="col-4 text-center">
+                    <% if (perks.indexOf('crear_personajes') >= 0) { %>
+                        <button type="button" class="btn btn-info" id = "agregar_personaje"></button>
+                    <% } %>
+                </div>
+                
+            </div>
+            <div class="col">
+                <img src="/media/genshin.png" width="924" height="520">
+                <h1 class="display-1">Personajes</h1>
+            </div>
+            <div class="col"> </div>
+        </div>
+    </div>
+    <div>
+        <% if (personajes.length > 0) { %>
+            <div class="container text-center">
+                <% let columns = 0; %>
+                <% for(let personaje of personajes) { %>
+                    <% if (columns == 0) { %>
+                            <div class="row">
+                        <% } %>
+                    <% if (columns < 4) { %>
+                        <div class="col">
+<% /* ---------------------------------------------------------------------- */ %>
+            <%    /* cartas de personaje */   %>
+                            <div class="card">
+                                <img src="<%= personaje.imagen %>" class="card-img-top">
+                                <div class="card-body">
+                                    <h5 class="card-title"><%= personaje.nombre %></h5>
+                                    <h5 class="card-title">Elemento: <%= personaje.elemento %></h5>
+                                </div>
+                            </div>
+<% /* ---------------------------------------------------------------------- */ %>
+                        </div>
+                        <% columns += 1; %>
+                    <% } else { %>
+                                <div class="card">
+                                    <img src="<%= personaje.imagen %>" class="card-img-top">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><%= personaje.nombre %></h5>
+                                        <h5 class="card-title">Elemento: <%= personaje.elemento %></h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <% columns = 0; %>
+                    <% } %>
+                <% } %>
+            </div>
+        <% } else { %>
+            <div class="container text-center">
+                <h2 class="display-2">No hay personajes registrados</h1>
+            </div>
+            <% } %>
+    </div>
+    <script src="/js/js2.js"></script>
+</body>

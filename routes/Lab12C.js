@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-const otherController = require('../controller/Lab13.controller')
+const mainController = require('../controller/Lab13.controller')
 
-router.get('/Lab1', otherController.lab1);
+router.get('/Lab1', mainController.lab1);
 
-router.get('/logout', otherController.logout);
+router.get('/list', mainController.addChar);
 
 module.exports = router;

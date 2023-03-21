@@ -1,0 +1,42 @@
+<%- include('header.ejs') %>
+<%- include('bootstrap.ejs') %>
+<body class="p-3 mb-2 bg-primary-subtle text-emphasis-primary">
+    <div class="text-center">
+        <h1 class="display-3">Add a New Character</h1>
+
+        <form action="/new" method="POST">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <div class="container">
+                <div class="input-group mb-3">
+                    <input type="text" name="name" id="name" class="form-control" placeholder="Name" aria-label="name" aria-describedby="basic-addon1">
+                </div>
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="inputGroupSelect01">Weight Class</label>
+                    <select class="form-select" name="weight" id="weight">
+                        <option selected>Opciones</option>
+                        <option value="Feather">Feather</option>
+                        <option value="Feather Alt">Feather Alt</option>
+                        <option value="Light">Light</option>
+                        <option value="Super Light">Super Light</option>
+                        <option value="Super Light Alt">Super Light Alt</option>
+                        <option value="Speedy">Speedy</option>
+                        <option value="Light Welter">Light Welter</option>
+                        <option value="Welter">Welter</option>
+                        <option value="Welter Alt">Welter Alt</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Medium Alt">Medium Alt</option>
+                        <option value="Light Cruiser">Light Cruiser</option>
+                        <option value="Metal">Metal</option>
+                        <option value="Cruiser">Cruiser</option>
+                        <option value="Heavy">Heavy</option>
+                        <option value="Super Heavy">Super Heavy</option>
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" name="image" id="image" class="form-control" placeholder="Character Icon URL" aria-label="Character Icon URL" aria-describedby="basic-addon1">
+                </div>
+                <input class="btn btn-outline-primary" type="submit" value="Register">
+            </div>
+        </form>
+    </div>
+</body>

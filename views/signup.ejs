@@ -1,0 +1,23 @@
+<%- include('header.ejs') %>
+<%- include('bootstrap.ejs') %>
+<body>
+    <div class="text-center">
+        <h1 class="display-4">Register</h1>
+    </div>
+    <form action="/signup" method="POST">
+        <div class="container">
+            <div class="input-group mb-3">
+                <input required name="name" id="name" class="form-control" type="text" placeholder="Name" aria-label="name" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group mb-3">
+                <input required name="username" id="username" class="form-control" type="text" placeholder="Username" aria-label="username" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group mb-3">
+                <input required name="password" id="password" class="form-control" type="password" placeholder="Password" aria-label="password" aria-describedby="basic-addon1">
+            </div>
+            <div class="text-center">
+            <input class="btn btn-outline-primary" type="submit" value="register">
+            </div>
+        </div>
+    </form>
+</body>

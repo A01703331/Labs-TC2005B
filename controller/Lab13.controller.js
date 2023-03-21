@@ -10,12 +10,6 @@ exports.getCookie = (request, response, next) => {
     let values = cookies.split('=')[1] || 0;
 }
 
-exports.logout = (request, response, next) => {
-    request.session.destroy(() => {
-        response.redirect('/index/Lab1'); //Este código se ejecuta cuando la sesión se elimina.
-    });
-};
-
 exports.lab1 = (request, response, next) => {
     response.render(path.join(__dirname, '..', 'views', 'index'))
 };
@@ -83,9 +77,9 @@ exports.post_confirm =  (request, response, next) => {
         .catch(err => console.log(err));
 };
 
-exports.addTrack = (request, response, next) => {
-    const newTrack = new Map(request.body.mapID, request.body.cupID, request.body.name, request.body.link);
-    Map.save().then(() => {
+exports.addChar = (request, response, next) => {
+    const newTrack = new Character(request.body.charID, request.body.name, request.body.weight, request.body.image);
+    Character.save().then(() => {
         response.redirect('/Lab1');
     }).catch(err => console.log(err));
 };

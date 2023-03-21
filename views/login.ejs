@@ -1,0 +1,31 @@
+<%- include('header.ejs') %>
+<%- include('bootstrap.ejs') %>
+<body>
+    <div class="text-center">
+        <h1 class="display-4">Log In</h1>
+    </div>
+
+    <% if(mssg != '') { %>
+        <div class="container">
+            <%= mssg %>
+        </div>
+    <% } %>
+
+    <form action="/login" method="POST">
+
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+        <div class="container">
+            <div class="input-group mb-3">
+                <input name="username" id="username" class="input-group-text" type="text" placeholder="Username">
+            </div>
+            <div class="input-group mb-3">
+                <input name="password" id="password" class="input-group-text" type="password" placeholder="Password">
+            </div>
+            <div class="text-center">
+                <input class="btn btn-outline-primary" type="submit" value="Login">
+                <button class="btn btn-outline-primary" href="/signup">Register</button>
+            </div>
+        </div>
+    </form>
+</body>
