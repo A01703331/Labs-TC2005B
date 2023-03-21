@@ -1,20 +1,93 @@
-CREATE TABLE users (
-    id numeric(2) NOT NULL,
-    username varchar(30) COLLATE utf8_general_ci NOT NULL,
-    name varchar(30) COLLATE utf8_general_ci NOT NULL,
-    password varchar(255) COLLATE utf8_general_ci NOT NULL
+
+CREATE TABLE perks (
+  id int(11) NOT NULL,
+  nombre varchar(40) NOT NULL,
+  created_at timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
-INSERT INTO users (id, username, name, password) VALUES
-(00, 'BingBingWahoo', 'Mario', '12345'),
-(01, 'GhostBusterElite', 'Luigi', '54321'),
-(02, 'RoyalMonarch', 'Peach', 'abcde'),
-(03, 'QueenOfSass', 'Daisy', 'edcba');
+INSERT INTO perks (id, nombre, created_at) VALUES
+(1, 'see', '2023-03-14 17:55:35'),
+(2, 'create', '2023-03-14 17:55:35');
 
-ALTER TABLE users
+CREATE TABLE roles (
+  id int(11) NOT NULL,
+  nombre varchar(40) NOT NULL,
+  descripcion varchar(400) NOT NULL,
+  created_at timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+INSERT INTO roles (id, nombre, descripcion, created_at) VALUES
+(1, 'chef', '', '2023-03-14 17:55:06'),
+(2, 'influencer', '', '2023-03-14 17:55:06');
+
+CREATE TABLE role_perk (
+  roleID int(11) NOT NULL,
+  perkID int(11) NOT NULL,
+  created_at timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+INSERT INTO role_perk (roleID, perkID, created_at) VALUES
+(1, 1, '2023-03-14 17:55:53'),
+(1, 2, '2023-03-14 17:55:53'),
+(2, 1, '2023-03-14 17:56:03');
+
+CREATE TABLE users (
+  id int(11) NOT NULL,
+  username varchar(40) NOT NULL,
+  name varchar(400) NOT NULL,
+  password varchar(400) NOT NULL,
+  created_at timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+INSERT INTO users (id, username, name, password, created_at) VALUES
+(01, 'BingBingWahoo', 'Mario', '12345', '2023-03-13 18:06:24'),
+(02, 'GhostBusterElite', 'Luigi', '54321', '2023-03-13 18:13:19'),
+(03, 'RoyalMonarch', 'Peach', 'abcde', '2023-03-13 18:14:08'),
+(04, 'QueenOfSass', 'Daisy', 'edcba', '2023-03-13 18:24:01');
+
+CREATE TABLE user_role (
+  userID int(11) NOT NULL,
+  roleID int(11) NOT NULL,
+  created_at timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+INSERT INTO user_role (userID, roleID, created_at) VALUES
+(4, 1, '2023-03-14 17:57:14'),
+(5, 2, '2023-03-14 17:56:35');
+
+ALTER TABLE perks
   ADD PRIMARY KEY (id);
-  ADD UNIQUE KEY (username);
+
+ALTER TABLE roles
+  ADD PRIMARY KEY (id);
+
+ALTER TABLE role_perk
+  ADD PRIMARY KEY (roleID,perkID),
+  ADD KEY perkID (perkID);
 
 ALTER TABLE users
-  MODIFY id int(11) NOT NULL AUTO_INCREMENT;
+  ADD PRIMARY KEY (id),
+  ADD UNIQUE KEY username (username);
+
+ALTER TABLE user_role
+  ADD PRIMARY KEY (userID,roleID),
+  ADD KEY roleID (roleID);
+
+ALTER TABLE privilegios
+  MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  
+ALTER TABLE roles
+  MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+ALTER TABLE usuarios
+  MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+ALTER TABLE rol_privilegio
+  ADD CONSTRAINT rol_privilegio_ibfk_1 FOREIGN KEY (idRol) REFERENCES roles (id),
+  ADD CONSTRAINT rol_privilegio_ibfk_2 FOREIGN KEY (idPrivilegio) REFERENCES privilegios (id);
+
+ALTER TABLE usuario_rol
+  ADD CONSTRAINT usuario_rol_ibfk_1 FOREIGN KEY (idUsuario) REFERENCES usuarios (id),
+  ADD CONSTRAINT usuario_rol_ibfk_2 FOREIGN KEY (idRol) REFERENCES roles (id);
 COMMIT;
+

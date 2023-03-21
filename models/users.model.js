@@ -14,9 +14,9 @@ module.exports = class User {
         return bcrypt.hash(this.password, 12)
         .then((cypher) => {
             return db.execute(`
-                INSERT INTO user (name, username, password)
+                INSERT INTO user (username, name, password)
                 VALUES (?, ?, ?)
-            `, [this.name, this.username, cypher]);
+            `, [this.username, this.name, cypher]);
         })
         .catch((error) => { console.log(error) });
     }
@@ -32,7 +32,7 @@ module.exports = class User {
     static fetchPerks(username) {
         return db.execute(`
             SELECT p.name
-            FROM Usuarios u, Usuario_rol ur, Roles r, Rol_privilegio rp, Privilegios p
+            FROM users u, user_role ur, roles r, role_perk rp, perks p
             WHERE u.id = ur.userID AND ur.roleID = r.id AND rp.roleID = r.id
             AND rp.perkID = p.id AND u.username = ?
         `, [username]);

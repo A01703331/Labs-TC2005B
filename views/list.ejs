@@ -1,6 +1,5 @@
-<%- include('header.ejs') %>
-<%- include('bootstrap.ejs') %>
-
+<%- include('includes/header.ejs') %>
+<%- include('includes/bootstrap.ejs') %>
 <body class="p-3 mb-2 bg-primary-subtle text-emphasis-primary cursor">
     
     <div class="container text-center">
@@ -8,23 +7,22 @@
             <div class="col">
                 <div class="col-4 text-center">
                     <% if (perks.indexOf('crear_personajes') >= 0) { %>
-                        <button type="button" class="btn btn-info" id = "agregar_personaje"></button>
+                        <button type="button" class="btn btn-info" id = "addChar"></button>
                     <% } %>
                 </div>
                 
             </div>
             <div class="col">
-                <img src="/media/genshin.png" width="924" height="520">
                 <h1 class="display-1">Personajes</h1>
             </div>
             <div class="col"> </div>
         </div>
     </div>
     <div>
-        <% if (personajes.length > 0) { %>
+        <% if (characters.length > 0) { %>
             <div class="container text-center">
                 <% let columns = 0; %>
-                <% for(let personaje of personajes) { %>
+                <% for(let character of characters) { %>
                     <% if (columns == 0) { %>
                             <div class="row">
                         <% } %>
@@ -33,10 +31,15 @@
 <% /* ---------------------------------------------------------------------- */ %>
             <%    /* cartas de personaje */   %>
                             <div class="card">
-                                <img src="<%= personaje.imagen %>" class="card-img-top">
+                                <img src="<%= character.image %>" class="card-img-top">
                                 <div class="card-body">
-                                    <h5 class="card-title"><%= personaje.nombre %></h5>
-                                    <h5 class="card-title">Elemento: <%= personaje.elemento %></h5>
+                                    <h5 class="card-title"><%= character.name %></h5>
+                                    <h5 class="card-title">Speed: <%= character.speed %></h5>
+                                    <h5 class="card-title">Acceleration: <%= character.acceleration %></h5>
+                                    <h5 class="card-title">Weight: <%= character.weight %></h5>
+                                    <h5 class="card-title">Handling: <%= character.handling %></h5>
+                                    <h5 class="card-title">Traction: <%= character.traction %></h5>
+                                    <h5 class="card-title">Miniturbo: <%= character.miniturbo %></h5>
                                 </div>
                             </div>
 <% /* ---------------------------------------------------------------------- */ %>

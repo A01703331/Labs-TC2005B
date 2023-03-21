@@ -5,10 +5,62 @@ const Kart = require('../models/kart.model');
 const Map = require('../models/versus_maps.model');
 // const BattleMap = require('../models/battle_maps.model');
 
-exports.getCookie = (request, response, next) => {
-    const data = request.get('Cookie') || '';
-    let values = cookies.split('=')[1] || 0;
-}
+
+exports.get_List = (request, response, next) => {    
+
+    const cookies = request.get('Cookie') || '';
+
+    let query = cookies.split('=')[1] || 0;
+
+    query++;
+
+    //Crear una cookie
+    response.setHeader('Set-Cookie', 'consultas=' + consultas + '; HttpOnly');
+
+    const id = request.params.id || 0;
+
+    Character.fetch(id)
+    .then(([rows, fieldData]) => {
+        console.log(rows);
+        //console.log(fieldData);
+
+        response.render('list', { 
+            character: rows,
+            isLoggedIn: request.session.isLoggedIn || false,
+            sessionName: request.session.sessionName || '',
+            perks: request.session.perks || [],
+        });
+    })
+    .catch(error => {
+        console.log(error);
+    });
+
+};
+
+exports.get_New = (request, response, next) => {
+    response.render('new', {
+        isLoggedIn: request.session.isLoggedIn || false,
+        sessionName: request.session.sessionName || '',
+        csrfToken: request.csrfToken(), 
+    });
+};
+
+exports.post_nuevo = (request, response, next) => {
+    const newCharacter = new Character({
+        name: request.body.newName,
+        weightClass: request.body.weightClass,
+        image: request.body.icon,
+    });
+
+    Character.save()
+    .then(([rows, fieldData]) => {
+        request.session.latestChar = newCharacter.name;
+
+        response.status(300).redirect('/list');
+    })
+    .catch(error => console.log(error));
+
+};
 
 exports.lab1 = (request, response, next) => {
     response.render(path.join(__dirname, '..', 'views', 'index'))
@@ -78,8 +130,8 @@ exports.post_confirm =  (request, response, next) => {
 };
 
 exports.addChar = (request, response, next) => {
-    const newTrack = new Character(request.body.charID, request.body.name, request.body.weight, request.body.image);
-    Character.save().then(() => {
+    const newChar = new Character(request.body.name, request.body.weight, request.body.image);
+    Character.save(request.body.weight).then(() => {
         response.redirect('/Lab1');
     }).catch(err => console.log(err));
 };
