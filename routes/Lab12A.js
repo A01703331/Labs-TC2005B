@@ -3,12 +3,12 @@ const router = express.Router();
 
 const marioKartController = require('../controller/Lab13.controller')
 
-router.get('/charSelect', marioKartController.get_VChar);
+router.post('/charSelect', marioKartController.post_Char);
 
-router.post('/kartSelect', marioKartController.get_VKart);
+router.post('/kartSelect', marioKartController.post_Kart);
 
-router.post('/mapSelect', marioKartController.get_VMap);
+router.post('/mapSelect', marioKartController.post_VMap);
 
-router.post('/confirm', marioKartController.Vconfirm);
+router.post('/confirm', marioKartController.post_confirm);
 
 module.exports = router;

@@ -1,52 +1,49 @@
-const versus_maps = [
-    {
-        mapName: "Mario Circuit",
-        mapID: "mc"
-    },
-    {
-        mapName: "Coconut Mall",
-        mapID: "cm"
-    },
-    {
-        mapName: "Singapore Speedway",
-        mapID: "ss"
-    },
-    {
-        mapName: "Toad's Factory",
-        mapID: "kf"
-    },
-    {
-        mapName: "Yoshi's Island",
-        mapID: "yi"
-    },
-    {
-        mapName: "DK Summit",
-        mapID: "ds"
-    },
-    {
-        mapName: "Bowser's Castle",
-        mapID: "kc"
-    },
-    {
-        mapName: "Rainbow Road",
-        mapID: "rr"
-    }
-];
+const db = require('../util/database');
 
-module.exports = class VersusMap {
+module.exports = class Map {
     //Constructor de la clase. Sirve para crear un nuevo objeto, y en él se definen las propiedades del modelo
-    constructor(vmap) {
-        this.mapName = vmap.charName;
-        this.mapID = vmap.charID;
+    constructor(track) {
+        this.mapID = track.mapID;
+        this.cupID = track.cupID;
+        this.name = track.name;
+        this.link = track.link;
     }
 
-    //Este método servirá para guardar de manera persistente el nuevo objeto. 
+    //Este método guarda de manera persistente el nuevo objeto. (No creo que lo use)
     save() {
-        versus_maps.push(this);
+        return db.execute('INSERT INTO tracks (mapID, cupID, mapName) VALUES (?, ?, ?)',
+        [this.mapID, this.cupID, this.name, this.link])
     }
 
-    //Este método servirá para devolver los objetos del almacenamiento persistente.
+    //Este método recupera el link de la música del mapa especificado.
+    static get_Link(map) {
+        return db.execute('SELECT link FROM tracks WHERE name = ?',
+        [map])
+    }
+
+    //Este método sirve para devolver las pistas de una copa.
+    static fetchCupTracks(cup) {
+        return db.execute('SELECT * FROM tracks WHERE cupID = ? ORDER BY mapID ASC',
+        [cup]);
+    }
+
+    //Este método sirve para devolver los mapas del modo versus.
+    static fetchVersus() {
+        return db.execute('SELECT * FROM tracks WHERE cupID > 0 ORDER BY mapID ASC');
+    }
+
+    //Este método sirve para devolver los mapas del modo de batalla.
+    static fetchBattle() {
+        return db.execute('SELECT * FROM tracks WHERE cupID = 0 ORDER BY mapID ASC');
+    }
+
+    //Este método devuelve las copas del modo versus.
+    static fetchCups() {
+        return db.execute('SELECT * FROM cups WHERE cupID > 0 ORDER BY cupID ASC');
+    }
+
+    //Este método servirá para devolver todos los objetos mapas de la BD.
     static fetchAll() {
-        return versus_maps;
+        return db.execute('SELECT * FROM tracks');
     }
 }

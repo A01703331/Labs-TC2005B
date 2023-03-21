@@ -1,35 +1,35 @@
 const battle_maps = [
     {
         mapName: "Battle Course 1",
-        mapID: "bc"
+        mapID: "01"
     },
     {
         mapName: "Big Donut",
-        mapID: "bd"
+        mapID: "02"
     },
     {
         mapName: "Cookie Land",
-        mapID: "cl"
+        mapID: "03"
     },
     {
         mapName: "Palm Shore",
-        mapID: "ps"
+        mapID: "04"
     },
     {
         mapName: "Delfino Pier",
-        mapID: "dp"
+        mapID: "05"
     },
     {
         mapName: "Wuhu Town",
-        mapID: "wt"
+        mapID: "06"
     },
     {
         mapName: "Lunar Colony",
-        mapID: "lc"
+        mapID: "07"
     },
     {
         mapName: "New York Minute B",
-        mapID: "ny"
+        mapID: "08"
     }
 ];
 

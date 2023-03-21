@@ -10,15 +10,15 @@
                 <p class="title">Select your player:</p>
                 <% for (let character of characters) { %>
                     <label>
-                        <input type='radio' class="nes-radio" id='<%= character.charID %>' name='character' value='<%= character.charName %>' checked>
-                        <span class='element' for='<%= character.charID %>'><%= character.charName %></span>
+                        <input type='radio' class="nes-radio" id='<%= character.charID %>' name='character' value='<%= character.name %>' checked>
+                        <span class='element' for='<%= character.charID %>'><%= character.name %></span>
                     </label>
                     <br>
                 <% } %>
             </fieldset>
             <br>
             <ul>
-                <button class="nes-btn is-primary" type='submit'><span id="confirm" >OK!</span></button>
+                <button class="nes-btn is-primary" type='submit'><span class="confirm" >OK!</span></button>
             </ul>
         </form>
     </ul>

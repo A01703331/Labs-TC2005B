@@ -224,17 +224,15 @@
         </ul>
         <section id="Lab10EX" style="display:none">
             <ul>
-                <ul>
-                    <a href="/versus/charSelect">  
-                        <button class="nes-btn is-warning">Versus</button>  
-                    </a>
-                </ul>
+                <form action='/versus/charSelect' method='POST'>
+                    <input type='hidden' name='origin' value='versus'>
+                    <button class="nes-btn is-warning" type='submit'>Versus</button>  
+                </form>
                 <br>
-                <ul>
-                    <a href="/battle/charSelect">  
-                        <button class="nes-btn is-error">Battle</button>  
-                    </a>
-                </ul>
+                <form action='/battle/charSelect' method='POST'>
+                    <input type='hidden' name='origin' value='battle'>
+                    <button class="nes-btn is-error" type='submit'>Battle</button>  
+                </form>
             </ul>
         </section>
         <ul>
@@ -276,6 +274,23 @@
                     <li class="pregunta">¿Encuentras alguna desventaja en el estilo arquitectónico MVC?</li>
                     <ul class="nes-list is-circle">
                         <li>Hay demasiados archivos y van a haber más modelos por más clases que haya en el proyecto, la cantidad de controladores va a depender de cuantas cosas distintas en conjunto haya.</li>
+                    </ul>
+                </ul>
+            </ul>
+        </section>
+        <ul>
+            <button class="nes-btn is-primary" onclick="TextToggle('Lab17')">Laboratorio 17</button>
+        </ul>
+        <section id="Lab17" style="display:none">
+            <ul>
+                <ul class="nes-list is-disc">
+                    <li class="pregunta">¿Qué ventajas tiene escribir el código SQL únicamente en la capa del modelo?</li>
+                    <ul class="nes-list is-circle">
+                        <li>Según entendí, esto se debe a que en el modelo vamos definiendo nuestras clases, y como estamos tomando nuestros datos de una BD, es mejor tenerlos organizados ahí, además que podemos controlar mejor que parametros se mandan a las consultas.</li>
+                    </ul>
+                    <li class="pregunta">¿Qué es SQL injection y cómo se puede prevenir?</li>
+                    <ul class="nes-list is-circle">
+                        <li>SQL Injection es una vulnerabilidad que interfiere con las consultas del sistema, lo cual le permite a un atacante acceder a datos que no deberían, lo que puede llevar a la modificación de una BD, alterando o eliminando registros y tablas. Se puede prevenir diseñando nuestras consultas de tal forma que estas sean parametrizadas, con el simple uso de un ? en el string de la consulta, y pasando los parametros después.</li>
                     </ul>
                 </ul>
             </ul>

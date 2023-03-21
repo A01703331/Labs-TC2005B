@@ -20,8 +20,9 @@
             </fieldset>
             <br>
             <ul>
-                <input type="hidden" name="v" value='<%= link %>'>
-                <button class="nes-btn is-primary" type='submit'><span id="confirm" >GO!</span></button>
+                <input type="hidden" name="v" value='<%= redirect %>'>
+                <button class="nes-btn is-primary" type='submit'><span class="confirm" >GO!</span></button>
+                <a href='/logout' class="nes-btn is-error"><span class="confirm">Exit</span></a>
             </ul>
         </form>
     </ul>

@@ -19,7 +19,8 @@ button.hidden {
     border:none;
 }
 
-#confirm {
+.confirm {
+    font-family: 'Press Start 2P';
     font-size: 1.5rem;
     line-height: 3;
     padding-left: 3rem;

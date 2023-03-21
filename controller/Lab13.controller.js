@@ -2,87 +2,114 @@ const express = require('express');
 const path = require('path');
 const Character = require('../models/character.model');
 const Kart = require('../models/kart.model');
-const VersusMap = require('../models/versus_maps.model');
-const BattleMap = require('../models/battle_maps.model');
+const Map = require('../models/versus_maps.model');
+// const BattleMap = require('../models/battle_maps.model');
 
-let char_selection;
-let kart_selection;
-let map_selection;
-
-exports.get_VChar = (request, response, next) => {
-    response.render(path.join(__dirname, '..', 'views', 'charSelect'), {characters: Character.fetchAll(), from: 'versus'})
-};
-
-exports.get_VKart = (request, response, next) => {
-    char_selection = request.body.character;
-    response.render(path.join(__dirname, '..', 'views', 'kartSelect'), {karts: Kart.fetchAll(), from: 'versus'})
+exports.getCookie = (request, response, next) => {
+    const data = request.get('Cookie') || '';
+    let values = cookies.split('=')[1] || 0;
 }
 
-exports.get_VMap = (request, response, next) => {
-    kart_selection = request.body.kart;
-    response.render(path.join(__dirname, '..', 'views', 'mapSelect'), {maps: VersusMap.fetchAll(), from: 'versus'})
+exports.logout = (request, response, next) => {
+    request.session.destroy(() => {
+        response.redirect('/index/Lab1'); //Este código se ejecuta cuando la sesión se elimina.
+    });
 };
 
-exports.get_BChar = (request, response, next) => {
-    response.render(path.join(__dirname, '..', 'views', 'charSelect'), {characters: Character.fetchAll(), from: 'battle'})
+exports.lab1 = (request, response, next) => {
+    response.render(path.join(__dirname, '..', 'views', 'index'))
 };
 
-exports.get_BKart = (request, response, next) => {
-    char_selection = request.body.character;
-    response.render(path.join(__dirname, '..', 'views', 'kartSelect'), {karts: Kart.fetchAll(), from: 'battle'})
+exports.post_Char = (request, response, next) => {
+    request.session.origin = request.body.origin;
+    Character.fetchAll()
+        .then(([rows, fieldData]) => {
+            response.render(path.join(__dirname, '..', 'views', 'charSelect'), {
+                characters: rows,
+                from: request.session.origin
+            })
+        })
+        .catch(err => console.log(err));
 }
 
-exports.get_BMap = (request, response, next) => {
-    kart_selection = request.body.kart;
-    response.render(path.join(__dirname, '..', 'views', 'mapSelect'), {maps: BattleMap.fetchAll(), from: 'battle'})
+exports.post_Kart = (request, response, next) => {
+    request.session.character = request.body.character;
+    Kart.fetchAll()
+        .then(([rows, fieldData]) => {
+            response.render(path.join(__dirname, '..', 'views', 'kartSelect'), {
+                karts: rows,
+                from: request.session.origin
+            })
+        })
+        .catch(err => console.log(err));
+}
+
+exports.post_VMap = (request, response, next) => {
+    request.session.kart = request.body.kart;
+    Map.fetchVersus()
+        .then(([rows, fieldData]) => {
+            response.render(path.join(__dirname, '..', 'views', 'mapSelect'), {
+                maps: rows,
+                from: request.session.origin
+            })
+        })
+        .catch(err => console.log(err));
+}
+
+exports.post_BMap = (request, response, next) => {
+    request.session.kart = request.body.kart;
+    Map.fetchBattle()
+        .then(([rows, fieldData]) => {
+            response.render(path.join(__dirname, '..', 'views', 'mapSelect'), {
+                maps: rows,
+                from: request.session.origin
+            })
+        })
+        .catch(err => console.log(err));
 };
 
-exports.Vconfirm =  (request, response, next) => {
-    map_selection = request.body.map;
-    let redirect;
-    if(map_selection=='Mario Circuit'){
-        redirect = '-HaMsPMRlA8';
-    } else if (map_selection=='Coconut Mall'){
-        redirect = 'omNPg-ttAZ0';
-    } else if (map_selection=='Singapore Speedway'){
-        redirect = '-JfhBus8qvU';
-    } else if (map_selection=="Toad's Factory"){
-        redirect = 'F6oDoGqSk2g';
-    } else if (map_selection=="Yoshi's Island"){
-        redirect = 'ev9ubsGxbR0';
-    } else if (map_selection=='DK Summit'){
-        redirect = 'HL9RN8VFojY';
-    } else if (map_selection=="Bowser's Castle"){
-        redirect = 'MDhG8I9Bhdg';
-    } else if (map_selection=='Rainbow Road'){
-        redirect = 'rdQeuPu-Crw';
-    } else {
-        redirect = 'dQw4w9WgXcQ';
-    }
-    response.render(path.join(__dirname, '..', 'views', 'confirm'), {character: char_selection, kart: kart_selection, map: map_selection, link: redirect, from: 'versus'})
+exports.post_confirm =  (request, response, next) => {
+    request.session.map = request.body.map;
+    Map.get_Link(request.session.map)
+        .then(([rows, fieldData]) => {
+            response.render(path.join(__dirname, '..', 'views', 'confirm'), {
+                character: request.session.character,
+                kart: request.session.kart,
+                map: request.session.map,
+                redirect: rows[0].link,
+                from: request.session.origin
+            })
+        })
+        .catch(err => console.log(err));
 };
 
-exports.Bconfirm = (request, response, next) => {
-    map_selection = request.body.map;
-    let redirect;
-    if(map_selection=='Battle Course 1'){
-        redirect = 'n8qaa3mNtlk';
-    } else if (map_selection=='Big Donut'){
-        redirect = 'pnAn9rYsas0';
-    } else if (map_selection=='Cookie Land'){
-        redirect = 'p2oCxHIgTfU';
-    } else if (map_selection=="Palm Shore"){
-        redirect = '2-UKBHWhHtY';
-    } else if (map_selection=="Delfino Pier"){
-        redirect = 'TWZGyZMT3yc';
-    } else if (map_selection=='Wuhu Town'){
-        redirect = '-kjO7CcX0_s';
-    } else if (map_selection=="Lunar Colony"){
-        redirect = 'Ty7NbPsIrq0';
-    } else if (map_selection=='New York Minute B'){
-        redirect = 'WPdM3ZQQNKI';
-    } else {
-        redirect = '8kN1IULIq-M';
-    }
-    response.render(path.join(__dirname, '..', 'views', 'confirm'), {character: char_selection, kart: kart_selection, map: map_selection, link: redirect, from: 'battle'})
+exports.addTrack = (request, response, next) => {
+    const newTrack = new Map(request.body.mapID, request.body.cupID, request.body.name, request.body.link);
+    Map.save().then(() => {
+        response.redirect('/Lab1');
+    }).catch(err => console.log(err));
 };
+
+// exports.post_Bconfirm = (request, response, next) => {
+//     request.session.map = request.body.map;
+//     let redirect;
+//     if(request.session.map=='Battle Course 1'){
+//         redirect = 'n8qaa3mNtlk';
+//     } else if (request.session.map=='Big Donut'){
+//         redirect = 'pnAn9rYsas0';
+//     } else if (request.session.map=='Cookie Land'){
+//         redirect = 'p2oCxHIgTfU';
+//     } else if (request.session.map=="Palm Shore"){
+//         redirect = '2-UKBHWhHtY';
+//     } else if (request.session.map=="Delfino Pier"){
+//         redirect = 'TWZGyZMT3yc';
+//     } else if (request.session.map=='Wuhu Town'){
+//         redirect = '-kjO7CcX0_s';
+//     } else if (request.session.map=="Lunar Colony"){
+//         redirect = 'Ty7NbPsIrq0';
+//     } else if (request.session.map=='New York Minute B'){
+//         redirect = 'WPdM3ZQQNKI';
+//     } else {
+//         redirect = '8kN1IULIq-M';
+//     response.render(path.join(__dirname, '..', 'views', 'confirm'), {character: request.session.character, kart: request.session.kart, map: request.session.map, link: redirect})
+// };
