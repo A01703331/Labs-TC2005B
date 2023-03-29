@@ -27,6 +27,14 @@ button.hidden {
     padding-right: 3rem;
 }
 
+#exit {
+    font-family: 'Press Start 2P';
+    font-size: 1.5rem;
+    line-height: 3;
+    padding-left: 2.25rem;
+    padding-right: 2.25rem;
+}
+
 .section-head, label {
     font-family:'Mochiy Pop One';
     font-size: 18px;

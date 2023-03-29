@@ -7,14 +7,19 @@
     <br>
     <ul>
         <form action='/<%= from %>/confirm' method='POST'>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             <fieldset class="nes-container with-title">
                 <p class="title">Select map:</p>
+                <% let i = 0 %>
                 <% for (let map of maps) { %>
+                    <% if (i%4 == 0 && i != 0) { %>
+                        <br>
+                    <% } %>
                     <label>
-                        <input type='radio' class="nes-radio" id='<%= map.mapID %>' name='map' value='<%= map.name %>' checked>
-                        <span class='element' for='<%= map.mapID %>'><%= map.name %></span>
+                        <input type='radio' class="nes-radio" id='<%= map.mapID %>' name='map' value='<%= map.name %>' <% if (map.mapID == 0 || map.mapID == 8) { %> checked <% } %>>
+                        <span class='element' for='<%= map.mapID %>'><img src='<%= map.preview %>'></span>
                     </label>
-                    <br>
+                    <% i++ %>
                 <% } %>
             </fieldset>
             <br>

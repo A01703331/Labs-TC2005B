@@ -1,0 +1,71 @@
+<%- include('includes/header.ejs') %>
+<%- include('includes/bootstrap.ejs') %>
+<head>
+    <title>Select Map!</title>
+</head>
+<body>
+    <br>
+    <ul class ="d-flex justify-content-center">
+        <fieldset class="nes-container with-title">
+            <p class="title">Select Cup:</p>
+            <% let i = 0 %>
+            <% for (let cup of cups) { %>
+                <% if (cup.cupID >= 9 && cup.cupID <= 12) continue %>
+                <% if (i%6 == 0 && i!=0) { %>
+                    <br>
+                <% } else if (i == 4) { %>
+                    <button class='hidden' type="button" data-toggle="modal" id='<%= cups[8].cupID %>' data-target="#cupModal"><img src='<%= cups[8].icon %>'></button>
+                    <% i++ %>
+                    <button class='hidden' type="button" data-toggle="modal" data-target="#cupModal"><img src='<%= cups[10].icon %>'></button>
+                    <br>
+                    <% i++ %>
+                <% } else if (i == 10) { %>
+                    <button class='hidden' type="button" data-toggle="modal" data-target="#cupModal"><img src='<%= cups[9].icon %>'></button>
+                    <% i++ %>
+                    <button class='hidden' type="button" data-toggle="modal" data-target="#cupModal"><img src='<%= cups[11].icon %>'></button>
+                    <br>
+                    <% i++ %>
+                <% } %>
+                    <button class='hidden' type="button" data-toggle="modal" data-target="#cupModal"><img src='<%= cup.icon %>'></button>
+                <% i++ %>
+            <% } %>
+        </fieldset>
+    </ul>
+</body>
+
+<!--button data-toggle="modal" data-target="#myModal"><img src=''></button-->
+
+<!-- Modal  -->
+<div class="modal fade" id="cupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Select Map:</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action='/<%= from %>/confirm' method='POST'>
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <% let j = 0 %>
+                    < for (let map of maps) { %>
+                        <% if (j == 2) { %>
+                            <br>
+                        <% } %>
+                        <label>
+                            <input type='radio' class="nes-radio" id='<= map.mapID %>' name='map' value='<= map.name %>' < if (map.mapID%4 == 0) { %> checked < } %>>
+                            <span class='element' for='<= map.mapID %>'><= map.name %></span>
+                        </label>
+                        <% j++ %>
+                    < } %>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="nes-btn is-error" data-dismiss="modal">Back</button>
+                <input type="hidden" name="_csrf" value="<= csrfToken %>">
+                <button class="nes-btn is-primary" type='submit'><span class="confirm">OK!</span></button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,24 +1,23 @@
-
 CREATE TABLE perks (
   id int(11) NOT NULL,
-  nombre varchar(40) NOT NULL,
+  name varchar(40) NOT NULL,
   created_at timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
-INSERT INTO perks (id, nombre, created_at) VALUES
+INSERT INTO perks (id, name, created_at) VALUES
 (1, 'see', '2023-03-14 17:55:35'),
 (2, 'create', '2023-03-14 17:55:35');
 
 CREATE TABLE roles (
   id int(11) NOT NULL,
-  nombre varchar(40) NOT NULL,
-  descripcion varchar(400) NOT NULL,
+  name varchar(40) NOT NULL,
+  descript varchar(400) NOT NULL,
   created_at timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
-INSERT INTO roles (id, nombre, descripcion, created_at) VALUES
-(1, 'chef', '', '2023-03-14 17:55:06'),
-(2, 'influencer', '', '2023-03-14 17:55:06');
+INSERT INTO roles (id, name, descript, created_at) VALUES
+(1, 'super', '', '2023-03-14 17:55:06'),
+(2, 'high_end', '', '2023-03-14 17:55:06');
 
 CREATE TABLE role_perk (
   roleID int(11) NOT NULL,
@@ -52,8 +51,8 @@ CREATE TABLE user_role (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 INSERT INTO user_role (userID, roleID, created_at) VALUES
-(4, 1, '2023-03-14 17:57:14'),
-(5, 2, '2023-03-14 17:56:35');
+(02, 1, '2023-03-14 17:57:14'),
+(01, 2, '2023-03-14 17:56:35');
 
 ALTER TABLE perks
   ADD PRIMARY KEY (id);
@@ -73,21 +72,20 @@ ALTER TABLE user_role
   ADD PRIMARY KEY (userID,roleID),
   ADD KEY roleID (roleID);
 
-ALTER TABLE privilegios
+ALTER TABLE perks
   MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
   
 ALTER TABLE roles
   MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
-ALTER TABLE usuarios
+ALTER TABLE users
   MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
-ALTER TABLE rol_privilegio
-  ADD CONSTRAINT rol_privilegio_ibfk_1 FOREIGN KEY (idRol) REFERENCES roles (id),
-  ADD CONSTRAINT rol_privilegio_ibfk_2 FOREIGN KEY (idPrivilegio) REFERENCES privilegios (id);
+ALTER TABLE role_perk
+  ADD CONSTRAINT role_perk_ibfk_1 FOREIGN KEY (roleID) REFERENCES roles (id),
+  ADD CONSTRAINT role_perk_ibfk_2 FOREIGN KEY (perkID) REFERENCES perks (id);
 
-ALTER TABLE usuario_rol
-  ADD CONSTRAINT usuario_rol_ibfk_1 FOREIGN KEY (idUsuario) REFERENCES usuarios (id),
-  ADD CONSTRAINT usuario_rol_ibfk_2 FOREIGN KEY (idRol) REFERENCES roles (id);
+ALTER TABLE user_role
+  ADD CONSTRAINT user_role_ibfk_1 FOREIGN KEY (userID) REFERENCES users (id),
+  ADD CONSTRAINT user_role_ibfk_2 FOREIGN KEY (roleID) REFERENCES roles (id);
 COMMIT;
-

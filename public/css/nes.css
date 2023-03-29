@@ -1802,7 +1802,7 @@ input[type="checkbox"] {
 
 .nes-radio:checked + span::before {
   position: absolute;
-  top: 6px;
+  top: 0px;
   left: -20px;
   content: "";
   width: 2px;

@@ -1,23 +1,25 @@
 <%- include('includes/header.ejs') %>
+<%- include('includes/bootstrap.ejs') %>
 <head>
     <title>Select your Kart!</title>
 </head>
-    <body>
+<body>
     <br>
     <ul>
-        <form action='/<%= from %>/mapSelect' method='POST'>
+        <form class="d-flex justify-content-center" action='/<%= from %>/mapSelect' method='POST'>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             <fieldset class="nes-container with-title">
                 <p class="title">Select your kart:</p>
                 <% for (let kart of karts) { %>
                     <label>
-                        <input type='radio' class="nes-radio" id='<%= kart.kartID %>' name='kart' value='<%= kart.name %>' checked>
+                        <input type='radio' class="nes-radio" id='<%= kart.kartID %>' name='kart' value='<%= kart.name %>' <% if (kart.kartID == 1) { %> checked <% } %>>
                         <span class='element' for='<%= kart.kartID %>'><%= kart.name %></span>
                     </label>
                     <br>
                 <% } %>
             </fieldset>
             <br>
-            <ul>
+            <ul class="align-self-end">
                 <button class="nes-btn is-primary" type='submit'><span class="confirm" >OK!</span></button>
             </ul>
         </form>

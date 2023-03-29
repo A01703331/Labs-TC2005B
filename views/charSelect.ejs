@@ -1,23 +1,28 @@
 <%- include('includes/header.ejs') %>
+<%- include('includes/bootstrap.ejs') %>
 <head>
     <title>Select your Player!</title>
 </head>
 <body>
     <br>
     <ul>
-        <form action='/<%= from %>/kartSelect' method='POST'>
+        <form class="d-flex justify-content-center" action='/<%= from %>/kartSelect' method='POST'>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             <fieldset class="nes-container with-title">
                 <p class="title">Select your player:</p>
+                <% let i = 0 %>
                 <% for (let character of characters) { %>
+                    <% if (i%7 == 0 && i!=0) { %>
+                        <br>
+                    <% } %>
                     <label>
-                        <input type='radio' class="nes-radio" id='<%= character.charID %>' name='character' value='<%= character.name %>' checked>
-                        <span class='element' for='<%= character.charID %>'><%= character.name %></span>
+                        <input type='radio' class="nes-radio" id='<%= character.charID %>' name='character' value='<%= character.name %>' <% if (character.charID == 1) { %> checked <% } %>>
+                        <span class='element' for='<%= character.charID %>'><img src="<%= character.image %>"></span>
                     </label>
-                    <br>
+                    <% i++ %>
                 <% } %>
             </fieldset>
-            <br>
-            <ul>
+            <ul class="align-self-end">
                 <button class="nes-btn is-primary" type='submit'><span class="confirm" >OK!</span></button>
             </ul>
         </form>

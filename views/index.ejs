@@ -225,11 +225,13 @@
         <section id="Lab10EX" style="display:none">
             <ul>
                 <form action='/versus/charSelect' method='POST'>
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                     <input type='hidden' name='origin' value='versus'>
                     <button class="nes-btn is-warning" type='submit'>Versus</button>  
                 </form>
                 <br>
                 <form action='/battle/charSelect' method='POST'>
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                     <input type='hidden' name='origin' value='battle'>
                     <button class="nes-btn is-error" type='submit'>Battle</button>  
                 </form>

@@ -26,7 +26,7 @@ exports.post_login = (request, response, next) => {
             bcrypt.compare(request.body.password, rows[0].password)
             .then((doMatch) => {
                 if(doMatch) {
-                    request.session.ifLoggedIn = true;
+                    request.session.isLoggedIn = true;
                     request.session.name = rows[0].name;
 
                     User.fetchPerks(rows[0].username)
@@ -37,7 +37,7 @@ exports.post_login = (request, response, next) => {
                         }
                         request.session.perks = perks;
                         return request.session.save(err => {
-                            response.redirect('/list');
+                            response.redirect('/index/Lab1');
                         });
                     })
                     .catch((error) => {console.log(error)})
@@ -67,12 +67,13 @@ exports.get_signup = (request, response, next) => {
 };
 
 exports.post_signup = (request, response, next) => {
-    
     const newUser = new User({
-        name: request.body.name,
         username: request.body.username,
+        name: request.body.name,
         password: request.body.password,
     });
+
+    console.log(newUser);
 
     newUser.save()
     .then(([rows, fieldData]) => {

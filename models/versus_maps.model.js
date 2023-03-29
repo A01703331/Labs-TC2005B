@@ -7,23 +7,24 @@ module.exports = class Map {
         this.cupID = track.cupID;
         this.name = track.name;
         this.link = track.link;
+        this.preview = track.preview;
     }
 
     //Este método guarda de manera persistente el nuevo objeto. (No creo que lo use)
     save() {
-        return db.execute('INSERT INTO tracks (mapID, cupID, mapName) VALUES (?, ?, ?)',
-        [this.mapID, this.cupID, this.name, this.link])
+        return db.execute('CALL saveNewTrack(?, ?, ?, ?, ?)',
+        [this.mapID, this.cupID, this.name, this.link, this.preview])
     }
 
     //Este método recupera el link de la música del mapa especificado.
     static get_Link(map) {
-        return db.execute('SELECT link FROM tracks WHERE name = ?',
+        return db.execute('CALL get_Link(?)',
         [map])
     }
 
     //Este método sirve para devolver las pistas de una copa.
     static fetchCupTracks(cup) {
-        return db.execute('SELECT * FROM tracks WHERE cupID = ? ORDER BY mapID ASC',
+        return db.execute('CALL fetchCupTracks(?)',
         [cup]);
     }
 

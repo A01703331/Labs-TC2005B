@@ -8,7 +8,7 @@ router.post('/charSelect', isAuth, marioKartController.post_Char);
 
 router.post('/kartSelect', isAuth, marioKartController.post_Kart);
 
-router.post('/mapSelect', isAuth, marioKartController.post_VMap);
+router.post('/mapSelect', isAuth, marioKartController.post_VMap2);
 
 router.post('/confirm', isAuth, marioKartController.post_confirm);
 

@@ -33,9 +33,11 @@ app.set('views', 'views');
 
 app.use(express.static(path.join(__dirname,'public')));
 app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.json());
 
 const csrfProtection = csrf();
 app.use(csrfProtection);
+
 app.use((request, response, next) => {
     response.locals.csrfToken = request.csrfToken();
     next();

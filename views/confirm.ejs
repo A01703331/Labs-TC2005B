@@ -1,11 +1,12 @@
 <%- include('includes/header.ejs') %>
+<%- include('includes/bootstrap.ejs') %>
 <head>
     <title>OK?</title>
 </head>
 <body>
     <br>
-    <ul>
-        <form action='https://www.youtube.com/watch?v=' method='GET'>
+    <div class="d-flex justify-content-center">
+        <form class="d-flex align-items-center" action='https://www.youtube.com/watch?v=' method='GET'>
             <fieldset class="nes-container with-title">
                 <p class="title">Is this OK?</p>
                 <ul class="nes-list is-circle">
@@ -18,12 +19,13 @@
                     <% } %> 
                 </ul>
             </fieldset>
-            <br>
-            <ul>
+            <ul class="align-self-end">
                 <input type="hidden" name="v" value='<%= redirect %>'>
                 <button class="nes-btn is-primary" type='submit'><span class="confirm" >GO!</span></button>
-                <a href='/logout' class="nes-btn is-error"><span class="confirm">Exit</span></a>
+                <br>
+                <br>
+                <a href='/logout' class="nes-btn is-error"><span id='exit' class="confirm">Exit</span></a>
             </ul>
         </form>
-    </ul>
+    </div>
 </body>

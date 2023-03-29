@@ -90,12 +90,25 @@ exports.post_Kart = (request, response, next) => {
         .catch(err => console.log(err));
 }
 
-exports.post_VMap = (request, response, next) => {
+exports.post_VMap1 = (request, response, next) => {
     request.session.kart = request.body.kart;
     Map.fetchVersus()
         .then(([rows, fieldData]) => {
             response.render(path.join(__dirname, '..', 'views', 'mapSelect'), {
                 maps: rows,
+                from: request.session.origin
+            })
+        })
+        .catch(err => console.log(err));
+}
+
+exports.post_VMap2 = (request, response, next) => {
+    request.session.kart = request.body.kart;
+    Map.fetchCups()
+        .then(([rows, fieldData]) => {
+            //response.status(200).json({cups: rows});
+            response.render(path.join(__dirname, '..', 'views', 'cupSelect'), {
+                cups: rows,
                 from: request.session.origin
             })
         })
@@ -122,7 +135,7 @@ exports.post_confirm =  (request, response, next) => {
                 character: request.session.character,
                 kart: request.session.kart,
                 map: request.session.map,
-                redirect: rows[0].link,
+                redirect: rows[0][0].link,
                 from: request.session.origin
             })
         })

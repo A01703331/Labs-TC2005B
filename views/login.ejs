@@ -12,19 +12,19 @@
     <% } %>
 
     <form action="/login" method="POST">
-
-        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-
         <div class="container">
             <div class="input-group mb-3">
+                <label for="username">Username: </label>
                 <input name="username" id="username" class="input-group-text" type="text" placeholder="Username">
             </div>
             <div class="input-group mb-3">
+                <label for="password">Password: </label>
                 <input name="password" id="password" class="input-group-text" type="password" placeholder="Password">
             </div>
             <div class="text-center">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                 <input class="btn btn-outline-primary" type="submit" value="Login">
-                <button class="btn btn-outline-primary" href="/signup">Register</button>
+                <a class="btn btn-outline-primary" href="/signup">Register</a>
             </div>
         </div>
     </form>

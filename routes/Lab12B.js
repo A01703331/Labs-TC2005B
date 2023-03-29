@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const isAuth = require('../util//is-auth.js');
+const isAuth = require('../util/is-auth.js');
 
 const marioKartController = require('../controller/Lab13.controller')
 
