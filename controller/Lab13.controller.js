@@ -90,19 +90,18 @@ exports.post_Kart = (request, response, next) => {
         .catch(err => console.log(err));
 }
 
-exports.post_VMap1 = (request, response, next) => {
-    request.session.kart = request.body.kart;
-    Map.fetchVersus()
+exports.get_VMaps = (request, response, next) => {
+    Map.fetchCupTracks(request.params.cupSelection)
         .then(([rows, fieldData]) => {
-            response.render(path.join(__dirname, '..', 'views', 'mapSelect'), {
-                maps: rows,
-                from: request.session.origin
-            })
+            response.status(200).json({maps: rows[0]})
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+            console.log(err);
+            response.status(500).json({message: "Internal Server Error"});
+        });
 }
 
-exports.post_VMap2 = (request, response, next) => {
+exports.post_Cups = (request, response, next) => {
     request.session.kart = request.body.kart;
     Map.fetchCups()
         .then(([rows, fieldData]) => {

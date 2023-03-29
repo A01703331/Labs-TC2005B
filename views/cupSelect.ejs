@@ -14,19 +14,19 @@
                 <% if (i%6 == 0 && i!=0) { %>
                     <br>
                 <% } else if (i == 4) { %>
-                    <button class='hidden' type="button" data-toggle="modal" id='<%= cups[8].cupID %>' data-target="#cupModal"><img src='<%= cups[8].icon %>'></button>
+                    <button class='hidden' type="button" data-toggle="modal" data-target="#cupModal" data-cup="<%= cups[8].cupID %>"><img src='<%= cups[8].icon %>'></button>
                     <% i++ %>
-                    <button class='hidden' type="button" data-toggle="modal" data-target="#cupModal"><img src='<%= cups[10].icon %>'></button>
+                    <button class='hidden' type="button" data-toggle="modal" data-target="#cupModal" data-cup="<%= cups[10].cupID %>"><img src='<%= cups[10].icon %>'></button>
                     <br>
                     <% i++ %>
                 <% } else if (i == 10) { %>
-                    <button class='hidden' type="button" data-toggle="modal" data-target="#cupModal"><img src='<%= cups[9].icon %>'></button>
+                    <button class='hidden' type="button" data-toggle="modal" data-target="#cupModal" data-cup="<%= cups[9].cupID %>"><img src='<%= cups[9].icon %>'></button>
                     <% i++ %>
-                    <button class='hidden' type="button" data-toggle="modal" data-target="#cupModal"><img src='<%= cups[11].icon %>'></button>
+                    <button class='hidden' type="button" data-toggle="modal" data-target="#cupModal" data-cup="<%= cups[11].cupID %>"><img src='<%= cups[11].icon %>'></button>
                     <br>
                     <% i++ %>
                 <% } %>
-                    <button class='hidden' type="button" data-toggle="modal" data-target="#cupModal"><img src='<%= cup.icon %>'></button>
+                    <button class='hidden' type="button" data-toggle="modal" data-target="#cupModal" data-cup="<%= cup.cupID %>"><img src='<%= cup.icon %>'></button>
                 <% i++ %>
             <% } %>
         </fieldset>
@@ -36,36 +36,55 @@
 <!--button data-toggle="modal" data-target="#myModal"><img src=''></button-->
 
 <!-- Modal  -->
-<div class="modal fade" id="cupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal fade bd-example-modal-xl" id="cupModal" tabindex="-1" role="dialog" aria-labelledby="cupModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Select Map:</h5>
+                <h5 class="modal-title" id="cupModalTitle">Select Map:</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <form action='/<%= from %>/confirm' method='POST'>
-                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                    <% let j = 0 %>
-                    < for (let map of maps) { %>
-                        <% if (j == 2) { %>
-                            <br>
-                        <% } %>
-                        <label>
-                            <input type='radio' class="nes-radio" id='<= map.mapID %>' name='map' value='<= map.name %>' < if (map.mapID%4 == 0) { %> checked < } %>>
-                            <span class='element' for='<= map.mapID %>'><= map.name %></span>
-                        </label>
-                        <% j++ %>
-                    < } %>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="nes-btn is-error" data-dismiss="modal">Back</button>
-                <input type="hidden" name="_csrf" value="<= csrfToken %>">
-                <button class="nes-btn is-primary" type='submit'><span class="confirm">OK!</span></button>
+            <div id='modal-changes' class="modal-body">
+                
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    $('#cupModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        const cupSelection = button.data('cup') // Extract info from data-* attributes
+        fetch('/versus/cup/' + cupSelection, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        }).then(result => {
+            return result.json();
+        }).then(data => {
+            console.log(data);
+            let j = 0;
+            let innerContent = '';
+            innerContent += "<form action='/<%= from %>/confirm' method='POST'><input type='hidden' name='_csrf' value='<%= csrfToken %>''><div class='d-flex justify-content-center'>";
+                for (let map of data.maps) {
+                    innerContent += "<label><input type='radio' class='nes-radio' id='"+map.mapID+"' name='map' value='"+map.name+"' "
+                    if (j==0) {
+                        innerContent += "checked"
+                    }
+                    innerContent += "><span class='element' for='"+map.mapID+"'><img src='"+map.preview+"'></span></label>"
+                    j++;
+                    if (j == 2) {
+                        innerContent += "</div><div class='d-flex justify-content-center'>";
+                    }
+                }
+            innerContent += "</div><br><div class='d-flex justify-content-end'><button class='nes-btn is-primary' type='submit'><span class='confirm'>OK!</span></button>&nbsp;&nbsp;<button type='button' class='nes-btn is-warning' data-dismiss='modal'><span class='confirm'>Back</span></button></div></form>";
+            document.getElementById("modal-changes").innerHTML = innerContent;
+        })
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        var modal = $(this)
+        modal.find('.modal-body input').val(cupSelection)
+        })
+</script>

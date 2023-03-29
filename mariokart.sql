@@ -192,7 +192,7 @@ INSERT INTO tracks (mapID, cupID, name, link, preview) VALUES
 (037, 08, '3DS Piranha Plant Slide', 'N2nfrW9PH1k', 'https://mario.wiki.gallery/images/d/d1/MK8_3DS_Piranha_Plant_Slide_Course_Icon.png'),
 (038, 08, 'Wii Grumble Volcano', 'UBTLinvaMwc', 'https://mario.wiki.gallery/images/b/b2/MK8_Wii_Grumble_Volcano_Course_Icon.png'),
 (039, 08, 'N64 Rainbow Road', 'NuG53TOJqlo', 'https://mario.wiki.gallery/images/b/b9/MK8_N64_Rainbow_Road_Course_Icon.png'),
-(040, 08, 'GCN Yoshi Circuit', 'MpXqPFtEpDE', 'https://mario.wiki.gallery/images/9/94/MK8_GCN_Yoshi_Circuit_Course_Icon.png'),
+(040, 09, 'GCN Yoshi Circuit', 'MpXqPFtEpDE', 'https://mario.wiki.gallery/images/9/94/MK8_GCN_Yoshi_Circuit_Course_Icon.png'),
 (041, 09, 'Excitebike Arena', 'U-CfGdYcKLQ', 'https://mario.wiki.gallery/images/5/57/MK8_Excitebike_Arena_Course_Icon.png'),
 (042, 09, 'Dragon Driftway', 'AWc_PbH1cCM', 'https://mario.wiki.gallery/images/b/bb/MK8_Dragon_Driftway_Course_Icon.png'),
 (043, 09, 'Mute City', '-yW4CMjpeNk', 'https://mario.wiki.gallery/images/f/fa/MK8_Mute_City_Course_Icon.png'),
