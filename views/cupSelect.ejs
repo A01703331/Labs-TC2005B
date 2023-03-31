@@ -64,12 +64,11 @@
         }).then(result => {
             return result.json();
         }).then(data => {
-            console.log(data);
             let j = 0;
             let innerContent = '';
             innerContent += "<form action='/<%= from %>/confirm' method='POST'><input type='hidden' name='_csrf' value='<%= csrfToken %>''><div class='d-flex justify-content-center'>";
                 for (let map of data.maps) {
-                    innerContent += "<label><input type='radio' class='nes-radio' id='"+map.mapID+"' name='map' value='"+map.name+"' "
+                    innerContent += "<label><input type='radio' class='nes-radio' id='"+map.mapID+"' name='map' value=\""+map.name+"\" "
                     if (j==0) {
                         innerContent += "checked"
                     }

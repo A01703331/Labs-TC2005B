@@ -1,6 +1,8 @@
 module.exports = (request, response, next) => {
     if (!request.session.isLoggedIn) {
-        window.location = '/login';
+        response.redirect('/login');
     }
-    next();
+    else {
+        next();
+    }
 }
