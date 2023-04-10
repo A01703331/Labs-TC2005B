@@ -1,5 +1,5 @@
 CREATE TABLE characters (
-    charID numeric(2) NOT NULL,
+    charID int(2) NOT NULL,
     name varchar(30) COLLATE utf8_general_ci NOT NULL,
     speed float(5) NOT NULL,
     acceleration float(5) NOT NULL,
@@ -273,8 +273,7 @@ ALTER TABLE tracks
 ALTER TABLE tracks
   ADD CONSTRAINT cup_track FOREIGN KEY (cupID) REFERENCES cups (cupID) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE characters
-  MODIFY charID numeric(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+ALTER TABLE characters CHANGE charID charID INT NOT NULL AUTO_INCREMENT == 44;
   
 ALTER TABLE karts
   MODIFY kartID numeric(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;

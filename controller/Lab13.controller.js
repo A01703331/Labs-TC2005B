@@ -142,13 +142,13 @@ exports.post_confirm =  (request, response, next) => {
 };
 
 exports.postFile = (request, response, next) => {
-    console.log("amogus");
+    response.redirect('/index/Lab1');
 };
 
 exports.addChar = (request, response, next) => {
     const newChar = new Character(request.body.name, request.body.weight, request.body.image);
     Character.save(request.body.weight).then(() => {
-        response.redirect('/Lab1');
+        response.redirect('/index/Lab1');
     }).catch(err => console.log(err));
 };
 

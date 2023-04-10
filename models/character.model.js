@@ -134,7 +134,6 @@ module.exports = class Character {
                 mt = 2.75
                 break;
         }
-        this.charID = countAll();
         this.name = chara.name;
         this.speed = spd;
         this.acceleration = acl;
@@ -147,8 +146,8 @@ module.exports = class Character {
 
     //Este método servirá para guardar de manera persistente el nuevo objeto. 
     save() {
-        return db.execute('INSERT INTO characters (charID, name, speed, acceleration, weight, handling, traction, miniturbo, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-        [this.charID, this.name, this.speed, this.acceleration, this.weight, this.handling, this.traction, this.miniturbo, this.image])
+        return db.execute('INSERT INTO characters (name, speed, acceleration, weight, handling, traction, miniturbo, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+        [this.name, this.speed, this.acceleration, this.weight, this.handling, this.traction, this.miniturbo, this.image])
     }
 
     //Este método servirá para devolver los objetos del almacenamiento persistente.
