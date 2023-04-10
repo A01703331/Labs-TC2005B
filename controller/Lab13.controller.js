@@ -141,6 +141,10 @@ exports.post_confirm =  (request, response, next) => {
         .catch(err => console.log(err));
 };
 
+exports.postFile = (request, response, next) => {
+    console.log("amogus");
+};
+
 exports.addChar = (request, response, next) => {
     const newChar = new Character(request.body.name, request.body.weight, request.body.image);
     Character.save(request.body.weight).then(() => {

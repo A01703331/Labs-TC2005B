@@ -7,4 +7,6 @@ router.get('/Lab1', mainController.lab1);
 
 router.get('/list', mainController.addChar);
 
+router.post('/file', mainController.postFile);
+
 module.exports = router;

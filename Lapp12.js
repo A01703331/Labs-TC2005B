@@ -10,6 +10,8 @@ const battleRoutes = require('./routes/Lab12B.js');
 const otherRoutes = require('./routes/Lab12C.js');
 const isAuth = require('./util/is-auth');
 const port = 1128;
+const multer = require('multer');
+
 
 function makeid(length) {
     let result = '';
@@ -35,6 +37,31 @@ app.use(express.static(path.join(__dirname,'public')));
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json());
 
+//fileStorage: Es nuestra constante de configuración para manejar el almacenamiento
+const fileStorage = multer.diskStorage({
+    destination: (request, file, callback) => {
+        //'uploads': Es el directorio del servidor donde se subirán los archivos 
+        callback(null, "public/uploads");
+    },
+    filename: (request, file, callback) => {
+        //aquí configuramos el nombre que queremos que tenga el archivo en el servidor, 
+        //para que no haya problema si se suben 2 archivos con el mismo nombre concatenamos el timestamp
+        callback(null, file.originalname);
+    },
+});
+
+const fileFilter = (request, file, callback) => {
+    if (file.mimetype == 'image/png' || 
+        file.mimetype == 'image/jpg' ||
+        file.mimetype == 'image/jpeg' ) {
+            callback(null, true);
+    } else {
+            callback(null, false);
+    }
+}
+
+app.use(multer({ storage: fileStorage, fileFilter: fileFilter  }).single('file'));
+
 const csrfProtection = csrf();
 app.use(csrfProtection);
 
@@ -47,6 +74,7 @@ app.use('/', userRoutes);
 app.use('/versus', versusRoutes);
 app.use('/battle', battleRoutes);
 app.use('/index', otherRoutes);
+app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 
 app.use((request, response, next) => {
     console.log('Site Accessed!');

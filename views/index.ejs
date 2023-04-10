@@ -296,6 +296,17 @@
                     </ul>
                 </ul>
             </ul>
+        </section><ul>
+            <button class="nes-btn is-primary" onclick="TextToggle('Lab22')">Laboratorio 22</button>
+        </ul>
+        <section id="Lab22" style="display:none">
+            <ul>
+                <form action="file" method="POST" enctype="multipart/form-data"> 
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <input id='file' type="file" name="file">
+                    <input type="submit" name="send" value="Upload">
+                </form>
+            </ul>
         </section>
     </body>
     <script type = "text/javascript" src = "/js/Lab4.js"></script>
