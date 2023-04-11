@@ -296,7 +296,8 @@
                     </ul>
                 </ul>
             </ul>
-        </section><ul>
+        </section>
+        <ul>
             <button class="nes-btn is-primary" onclick="TextToggle('Lab22')">Laboratorio 22</button>
         </ul>
         <section id="Lab22" style="display:none">
@@ -308,7 +309,84 @@
                 </form>
             </ul>
         </section>
+        <ul>
+            <button class="nes-btn is-primary" onclick="TextToggle('Lab26')">Laboratorio 26</button>
+        </ul>
+        <section id="Lab26" style="display:none">
+            <ul>
+                <ul class="nes-list is-disc">
+                    <li class="pregunta">¿Qué ventajas y desventajas tiene la integración de tus aplicaciones web con servicios web desarrollados por terceros?</li>
+                    <ul class="nes-list is-circle">
+                        <li><b>Como ventajas:</b> Normalmente se obtienen servicios de calidad con distintos propositos, Google Maps nos permite obtener ubicaciones especificas, y se usa a menudo por cadenas de restaurantes, mientras que las API de redes sociales suelen ser implementadas para que un individuo pueda compartir en sus redes ciertos negocios.</li>
+                        <li><b>Como desventajas:</b> No se tiene control sobre el servicio mismo, o si hay cambio en terminos. Por ejemplo, hace poco Twitter pasó de ser gratuito para desarrolladores, a ser un servicio de paga, lo cual puede afectar innumerables negocios o servicios de autentificación.</li>
+                    </ul>
+                </ul>
+            </ul>
+        </section>
+        <ul>
+            <button class="nes-btn is-primary" onclick="TextToggle('Lab26EX')">Laboratorio 26 - API</button>
+        </ul>
+        <section id="Lab26EX" style="display:none">
+            <ul>
+                <label for="entry-IdOrName">Entry ID/Name:</label>
+                <input type="text" id="entry-IdOrName" required="">
+                <br><br>
+                <button class='nes-btn' id="APIButton">Jumpscare</button>
+                <br><br>
+                <div id="entryRes"></div>
+            </ul>
+        </section>
     </body>
     <script type = "text/javascript" src = "/js/Lab4.js"></script>
     <script type = "text/javascript" src = "/js/Lab6.js"></script>
+    <script type = "text/javascript">
+        
+        document.getElementById("APIButton").onclick = () => {
+            let input = document.getElementById("entry-IdOrName").value;
+            let entry = input.toLowerCase();
+            let master_mode = false;
+            if (typeof entry == 'string' && entry.split(' ').length >= 2){
+                let joined_string = '';
+                for (let i=0; i<entry.split(' ').length;i++){
+                    if (i==entry.split(' ').length-1){
+                        joined_string += entry.split(' ')[i];
+                    }
+                    else {
+                        joined_string += entry.split(' ')[i] + '_';
+                    }
+                }
+                entry = joined_string;
+            }
+            
+            if(entry.split('_').length==2) {
+                if(entry.split('_')[0]=='golden'||entry.split('_')[0]=='sky'){
+                    master_mode = true;
+                }
+            }
+
+            if(master_mode){
+                fetch(`https://botw-compendium.herokuapp.com/api/v2/master_mode/entry/` + entry, {
+                    method: "GET",
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                }).then(result => {
+                    return result.json();
+                }).then(data => {
+                    document.getElementById("entryRes").innerHTML = "<img src="+data.data.image+">";
+                }).catch(error => console.log(error));
+            } else {
+                fetch(`https://botw-compendium.herokuapp.com/api/v2/entry/` + entry, {
+                    method: "GET",
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                }).then(result => {
+                    return result.json();
+                }).then(data => {
+                    document.getElementById("entryRes").innerHTML = "<img src="+data.data.image+">";
+                }).catch(error => console.log(error));
+            }
+        }
+    </script>
 </html>
