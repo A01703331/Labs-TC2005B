@@ -56,7 +56,7 @@ INSERT INTO characters (charID, name, speed, acceleration, weight, handling, tra
 (43, 'Birdo', 3.75, 3.75, 3, 3.75, 3.75, 3.75, 'https://mario.wiki.gallery/images/f/f6/MK8D_Birdo_Icon.png');
 
 CREATE TABLE karts (
-    kartID numeric(2) NOT NULL,
+    kartID int(2) NOT NULL,
     kartType varchar(30) COLLATE utf8_general_ci NOT NULL,
     name varchar(30) COLLATE utf8_general_ci NOT NULL,
     speed float(5) NOT NULL,
@@ -111,7 +111,7 @@ INSERT INTO karts (kartID, kartType, name, speed, acceleration, weight, handling
 (41, 'Standard Bike', 'Master Cycle Zero', 3, 4.25, 2.5, 4.25, 3.5, 3.75);
 
 CREATE TABLE cups (
-    cupID numeric(2) NOT NULL,
+    cupID int(2) NOT NULL,
     name varchar(30) COLLATE utf8_general_ci NOT NULL,
     icon varchar(255) COLLATE utf8_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -144,8 +144,8 @@ INSERT INTO cups (cupID, name, icon) VALUES
 (24, 'Spiny Cup', 'https://mario.wiki.gallery/images/c/cc/MK8_Secret_Character_Icon.png');
 
 CREATE TABLE tracks (
-    mapID numeric(3) NOT NULL,
-    cupID numeric(2) NOT NULL,
+    mapID int(3) NOT NULL,
+    cupID int(2) NOT NULL,
     name varchar(30) COLLATE utf8_general_ci NOT NULL,
     link varchar(11) COLLATE utf8_general_ci NOT NULL,
     preview varchar(255) COLLATE utf8_general_ci NOT NULL
@@ -257,29 +257,71 @@ INSERT INTO tracks (mapID, cupID, name, link, preview) VALUES
 (102, 24, "3DS Bowser's Castle", 'pwYmKqRvbAE', 'https://mario.wiki.gallery/images/5/54/MKT_Icon_BowsersCastle3DS_Meowser.png'),
 (103, 24, 'Wii Rainbow Road', '9jOOAefc1bc', 'https://mario.wiki.gallery/images/e/eb/MKT_Icon_RainbowRoadWii_MarioSatellaview.png');
 
+CREATE TABLE builds (
+    buildID int(5) NOT NULL,
+    charID int(2) NOT NULL,
+    kartID int(2) NOT NULL,
+    uses int(11) NOT NULL,
+    speed float(5) NOT NULL,
+    acceleration float(5) NOT NULL,
+    weight float(5) NOT NULL,
+    handling float(5) NOT NULL,
+    traction float(5) NOT NULL,
+    miniturbo float(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+CREATE TABLE races (
+    entryID int(5) NOT NULL,
+    raceID int(5) NOT NULL,
+    buildID int(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
 ALTER TABLE characters
   ADD PRIMARY KEY (charID);
+
+ALTER TABLE characters
+  MODIFY charID int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 ALTER TABLE karts
   ADD PRIMARY KEY (kartID);
 
+ALTER TABLE karts
+  MODIFY kartID int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+
 ALTER TABLE cups
   ADD PRIMARY KEY (cupID);
+
+ALTER TABLE cups
+  MODIFY cupID int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 ALTER TABLE tracks
   ADD PRIMARY KEY (mapID),
   ADD KEY (cupID);
 
 ALTER TABLE tracks
-  ADD CONSTRAINT cup_track FOREIGN KEY (cupID) REFERENCES cups (cupID) ON DELETE CASCADE ON UPDATE CASCADE;
-
-ALTER TABLE characters CHANGE charID charID INT NOT NULL AUTO_INCREMENT == 44;
-  
-ALTER TABLE karts
-  MODIFY kartID numeric(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
-
-ALTER TABLE cups
-  MODIFY cupID numeric(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY mapID int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
 
 ALTER TABLE tracks
-  MODIFY mapID numeric(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
+  ADD CONSTRAINT cup_track FOREIGN KEY (cupID) REFERENCES cups (cupID) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE builds
+  ADD PRIMARY KEY (buildID),
+  ADD KEY charID (charID),
+  ADD KEY kartID (kartID);
+
+ALTER TABLE builds
+  ADD CONSTRAINT build_fk_1 FOREIGN KEY (charID) REFERENCES characters (charID) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT build_fk_2 FOREIGN KEY (kartID) REFERENCES karts (kartID) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE builds
+  MODIFY buildID int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 1;
+  
+ALTER TABLE races
+  ADD PRIMARY KEY (entryID, raceID),
+  ADD KEY buildID (buildID);
+
+ALTER TABLE races
+  ADD CONSTRAINT race_build FOREIGN KEY (buildID) REFERENCES builds (buildID) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE races
+  MODIFY entryID int(5) NOT NULL AUTO_INCREMENT;

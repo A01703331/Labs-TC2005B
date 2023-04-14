@@ -12,6 +12,8 @@ router.post('/mapSelect', isAuth, marioKartController.post_Cups);
 
 router.get('/cup/:cupSelection', marioKartController.get_VMaps);
 
+router.post('/racers', isAuth, marioKartController.post_race);
+
 router.post('/confirm', isAuth, marioKartController.post_confirm);
 
 module.exports = router;

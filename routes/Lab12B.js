@@ -10,6 +10,8 @@ router.post('/kartSelect', isAuth, marioKartController.post_Kart);
 
 router.post('/mapSelect', isAuth, marioKartController.post_BMap);
 
+router.post('/racers', isAuth, marioKartController.post_race);
+
 router.post('/confirm', isAuth, marioKartController.post_confirm);
 
 module.exports = router;

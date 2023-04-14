@@ -151,8 +151,12 @@ module.exports = class Character {
     }
 
     //Este método servirá para devolver los objetos del almacenamiento persistente.
-    static fetch(id) {
+    static fetchByID(id) {
         return db.execute('SELECT * FROM characters WHERE charID = ?', [id]);
+    }
+
+    static fetchByName(nm) {
+        return db.execute('SELECT * FROM characters WHERE name = ?', [nm]);
     }
 
     static fetchAll() {

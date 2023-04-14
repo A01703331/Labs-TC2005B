@@ -1,0 +1,29 @@
+<%- include('includes/header.ejs') %>
+<%- include('includes/bootstrap.ejs') %>
+<head>
+    <title>Lineup</title>
+</head>
+<body>
+    <br>
+    <div class="d-flex justify-content-center">
+        <form class="d-flex align-items-center" action='/<%= from %>/confirm' method='POST'>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <fieldset class="nes-container with-title">
+                <p class="title">Race Lineup:</p>
+                <p class='element'><b>You:</b> Character: <img src='<%= character.image %>'> Kart: <%= kart %></p>
+                <% let i = 1 %>
+                <% for (racer of racers) { %>
+                    <p class='element'><b>CPU<%= i %>:</b> Character: <img src=<%= racer[0] %>> Kart: <%= racer[1] %></p>
+                    <% i++ %>
+                <% } %>
+            </fieldset>
+            <ul class="align-self-end">
+                <input type="hidden">
+                <button class="nes-btn is-primary" type='submit'><span class="confirm" >OK!</span></button>
+                <br>
+                <br>
+                <a href='/logout' class="nes-btn is-error"><span id='exit' class="confirm">Exit</span></a>
+            </ul>
+        </form>
+    </div>
+</body>

@@ -3,15 +3,15 @@ const db = require('../util/database');
 module.exports = class Kart {
     //Constructor de la clase. Sirve para crear un nuevo objeto, y en él se definen las propiedades del modelo
     constructor(karty) {
-        this.kartID = kart.kartID;
-        this.kartType = kart.kartType;
-        this.name = kart.name;
-        this.speed = kart.speed;
-        this.acceleration = kart.acceleration;
-        this.weight = kart.weight;
-        this.handling = kart.handling;
-        this.traction = kart.traction;
-        this.miniturbo = kart.miniturbo;
+        this.kartID = karty.kartID;
+        this.kartType = karty.kartType;
+        this.name = karty.name;
+        this.speed = karty.speed;
+        this.acceleration = karty.acceleration;
+        this.weight = karty.weight;
+        this.handling = karty.handling;
+        this.traction = karty.traction;
+        this.miniturbo = karty.miniturbo;
     }
 
     //Este método servirá para guardar de manera persistente el nuevo objeto. 
@@ -23,5 +23,13 @@ module.exports = class Kart {
     //Este método servirá para devolver los objetos del almacenamiento persistente.
     static fetchAll() {
         return db.execute('SELECT * FROM karts');
+    }
+
+    static fetchByID(id) {
+        return db.execute('SELECT * FROM karts WHERE kartID = ?', [id]);
+    }
+
+    static fetchByName(nm) {
+        return db.execute('SELECT * FROM karts WHERE name = ?', [nm]);
     }
 }
