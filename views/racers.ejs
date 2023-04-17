@@ -10,9 +10,9 @@
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             <fieldset class="nes-container with-title">
                 <p class="title">Race Lineup:</p>
-                <p class='element'><b>You:</b> Character: <img src='<%= character.image %>'> Kart: <%= kart %></p>
+                <p class='element'><b>YOU:</b> Character: <img src='<%= character.image %>'> Kart: <%= kart %></p>
                 <% let i = 1 %>
-                <% for (racer of racers) { %>
+                <% for (let racer of racers) { %>
                     <p class='element'><b>CPU<%= i %>:</b> Character: <img src=<%= racer[0] %>> Kart: <%= racer[1] %></p>
                     <% i++ %>
                 <% } %>

@@ -244,7 +244,7 @@ INSERT INTO tracks (mapID, cupID, name, link, preview) VALUES
 (089, 21, '3DS Wario Shipyard', 'rSjdQJXCmj4', 'https://mario.wiki.gallery/images/4/43/MKT_Icon_WarioShipyard3DS_WarioCowboy.png'),
 (090, 21, 'GBA Sunset Wilds', 'XFQciLj-J70', 'https://mario.wiki.gallery/images/8/84/MKT_Icon_SunsetWildsGBA_PeachExplorer.png'),
 (091, 21, 'DS Airship Fortress', '-cireEjMak4', 'https://mario.wiki.gallery/images/9/90/MKT_Icon_AirshipFortressDS_BowserJrPirate.png'),
-(092, 22, 'Tour Athens All-Around', 'dQw4w9WgXcQ', 'https://www.worldhistory.org/img/r/p/500x600/3372.jpg?v=1645656303'),
+(092, 22, 'Tour Athens Dash', 'dQw4w9WgXcQ', 'https://www.worldhistory.org/img/r/p/500x600/3372.jpg?v=1645656303'),
 (093, 22, 'Wii Dry Dry Ruins', '_1kMsWASS74', 'https://mario.wiki.gallery/images/d/d4/MKT_Icon_DryDryRuinsWii_PeachYukata.png'),
 (094, 22, '3DS Wuhu Loop', 'lInoXk8u0-A', 'https://mario.wiki.gallery/images/c/cf/Wuhu_Loop.png'),
 (095, 22, 'Piranha Plant Cove', 'Au_X-74PVy8', 'https://mario.wiki.gallery/images/1/18/MKT_Icon_PiranhaPlantCove2_PeteyPiranha.png'),

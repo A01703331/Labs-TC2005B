@@ -120,13 +120,12 @@ exports.post_race =  (request, response, next) => {
                 bldID = amnt[0].amount+1;
             }  else {        
                 bldID = build[0].buildID;
-                Build.addUseCount(bldID);
                 control = 1;
             }
             request.session.playerBld = bldID;
             var blds = [];
             var used = [];
-            for (let i=0;i<(amnt[0].amount-control)&&i<12;i++){
+            for (let i=1;i<(amnt[0].amount-control)&&i<12;i++){
                 let j = Math.floor(Math.random() * amnt[0].amount)+1;
                 while(used.includes(j) || j == bldID) {
                     j = Math.floor(Math.random() * amnt[0].amount)+1;
@@ -153,20 +152,23 @@ exports.post_race =  (request, response, next) => {
 exports.post_confirm =  (request, response, next) => {
     Race.countRaces().then(([ramnt, fieldData]) => {
         let raceNum = 0;
+        let raceEntry = [];
         console.log(ramnt[0].raceAmount);
         if (!ramnt[0]){
             raceNum = 1;
         } else {
             raceNum = ramnt[0].raceAmount+1;
         }
-
-        const playerEntry = new Race(raceNum, request.session.playerBld);
-        playerEntry.save();
+        
+        raceEntry.push([raceNum, request.session.playerBld]);
 
         for(i=0;i<request.session.cpu.length;i++){
-            let cpuEntry = new Race(raceNum, request.session.cpu[i]);
-            cpuEntry.save();
+            raceEntry.push([raceNum, request.session.cpu[i]]);
+            // cpuEntry.save();
         }
+
+        Race.saveAndUseTransaction(request.session.playerBld,raceEntry);
+
         Map.get_Link(request.session.map).then(([rows, fieldData]) => {
             response.render(path.join(__dirname, '..', 'views', 'confirm'), {
                 character: request.session.character.name,

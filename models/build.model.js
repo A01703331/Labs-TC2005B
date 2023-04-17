@@ -17,7 +17,7 @@ module.exports = class Build {
     //Este método servirá para guardar de manera persistente la nueva combinación. 
     save() {
         return db.execute('INSERT INTO builds (charID, kartID, uses, speed, acceleration, weight, handling, traction, miniturbo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
-        [this.charID, this.kartID, 1, this.speed, this.acceleration, this.weight, this.handling, this.traction, this.miniturbo])
+        [this.charID, this.kartID, 0, this.speed, this.acceleration, this.weight, this.handling, this.traction, this.miniturbo])
     }
 
     //Este método servirá para obtener si la combinación ya existe en la BD
