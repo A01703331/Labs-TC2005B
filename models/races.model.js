@@ -32,24 +32,21 @@ module.exports = class Race {
             }
         }
 
-        return new Promise((resolve, reject) => {
-            console.log("New promise")
-            db.getConnection().then(connection => {
-                console.log("Connection established");
-                connection.beginTransaction().then(() => {
-                    console.log("Transaction succesfully created");
-                    connection.execute('UPDATE builds SET uses = uses + 1 WHERE buildID = ?', [playerBld]).then(() => {
-                        console.log("Succesfully updated number of build uses");     
-                        connection.execute(entryInserts).then(() => {
-                            console.log("Succesfully registered the race");
-                            connection.commit().then(() => {
-                                console.log("Transaction succesfully commited");
-                                connection.release();
-                            }).catch(err => {console.log(err); connection.rollback(() => {connection.release();});});
+        db.getConnection().then(connection => {
+            console.log("Connection established");
+            connection.beginTransaction().then(() => {
+                console.log("Transaction succesfully created");
+                connection.execute('UPDATE builds SET uses = uses + 1 WHERE buildID = ?', [playerBld]).then(() => {
+                    console.log("Succesfully updated number of build uses");     
+                    connection.execute(entryInserts).then(() => {
+                        console.log("Succesfully registered the race");
+                        connection.commit().then(() => {
+                            console.log("Transaction succesfully commited");
+                            connection.release();
                         }).catch(err => {console.log(err); connection.rollback(() => {connection.release();});});
                     }).catch(err => {console.log(err); connection.rollback(() => {connection.release();});});
                 }).catch(err => {console.log(err); connection.rollback(() => {connection.release();});});
-            }).catch(err => console.log(err));
-        })   
+            }).catch(err => {console.log(err); connection.rollback(() => {connection.release();});});
+        }).catch(err => console.log(err));
     }
 }

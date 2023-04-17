@@ -276,6 +276,11 @@ CREATE TABLE races (
     buildID int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+CREATE TABLE logs (
+    createdAt timestamp NOT NULL DEFAULT current_timestamp(),
+    description varchar(255) COLLATE utf8_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
 ALTER TABLE characters
   ADD PRIMARY KEY (charID);
 
@@ -325,3 +330,9 @@ ALTER TABLE races
 
 ALTER TABLE races
   MODIFY entryID int(5) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE logs
+  ADD PRIMARY KEY (createdAt);
+
+DROP TRIGGER IF EXISTS afterUseUpdate;CREATE DEFINER=`root`@`localhost` TRIGGER `afterUseUpdate` AFTER UPDATE ON `builds` FOR EACH ROW INSERT INTO logs VALUES
+(now(), CONCAT('Added use to Build ', NEW.buildID));
